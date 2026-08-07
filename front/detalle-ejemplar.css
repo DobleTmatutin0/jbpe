@@ -1,0 +1,177 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --color-fondo: #edd4b5;
+    --color-header: #2f5d50;
+    --color-texto: #222;
+    --color-borde: #d9cdb0;
+    --color-card: #f2f5eb;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+}
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    background-color: var(--color-header);
+    padding: 1rem;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+main {
+    max-width: 1200px;
+    margin: auto;
+    padding: 2rem;
+}
+
+.volver {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+
+    text-decoration: none;
+    color: var(--color-header);
+    font-weight: bold;
+}
+
+.encabezado {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 1rem;
+}
+
+.titulo-estado {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+.estado {
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+
+.accedido {
+    background-color: #cfe8d2;
+}
+
+.btn-evento {
+    padding: 0.8rem 1.2rem;
+
+    border: none;
+    border-radius: 10px;
+
+    background-color: var(--color-header);
+    color: white;
+
+    cursor: pointer;
+}
+
+.btn-evento:hover {
+    opacity: 0.9;
+}
+
+.accesion {
+    margin-bottom: 2rem;
+    font-weight: bold;
+}
+
+.card {
+    background-color: var(--color-card);
+
+    border: 1px solid var(--color-borde);
+    border-radius: 12px;
+
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.card h2 {
+    margin-bottom: 1rem;
+}
+
+.datos-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.datos-grid strong {
+    display: block;
+    margin-bottom: 0.3rem;
+}
+
+.eventos-header {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+
+    padding: 0.8rem 1rem;
+
+    font-weight: bold;
+
+    border-bottom: 2px solid var(--color-borde);
+
+    margin-bottom: 0.5rem;
+}
+
+.eventos-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.evento-card {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+
+    align-items: center;
+
+    padding: 1rem;
+
+    background-color: white;
+
+    border: 1px solid var(--color-borde);
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+.evento-card:hover {
+    background-color: #f0ebdd;
+
+    transform: translateY(-2px);
+}
+
+.evento-tipo {
+    font-weight: bold;
+}
