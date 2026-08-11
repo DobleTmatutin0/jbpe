@@ -1,0 +1,150 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --color-fondo: #edd4b5;
+    --color-header: #2f5d50;
+    --color-texto: #fffefe;
+}
+
+body {
+    background-color: var(--color-fondo);
+    font-family: Arial, sans-serif;
+}
+
+header {
+    position: sticky;
+    top: 0;
+
+    background: var(--color-header);
+    padding: 1rem;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+}
+
+h1 {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+nav a {
+    color: var(--color-texto);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+main {
+    max-width: 1200px;
+    margin: auto;
+    padding: 2rem;
+}
+
+.titulo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 1rem;
+}
+
+.btn-nuevo {
+    padding: 0.8rem 1.2rem;
+
+    border: none;
+    border-radius: 10px;
+
+    background-color: var(--color-header);
+    color: white;
+
+    cursor: pointer;
+}
+
+.btn-nuevo:hover {
+    opacity: 0.9;
+}
+
+.busqueda {
+    margin-bottom: 1rem;
+}
+
+.busqueda input {
+    width: 100%;
+    padding: 0.8rem 1rem;
+
+    border-radius: 12px;
+    border: 1px solid #bdb7a8;
+
+    font-size: 1rem;
+}
+.busqueda input:focus {
+    outline: none;
+    border-color: #4a6b58;
+
+    box-shadow: 0 0 5px rgba(74, 107, 88, 0.3);
+}
+
+.ejemplares-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.ejemplar-card {
+    display: grid;
+    grid-template-columns: 1fr 3fr auto;
+
+    align-items: center;
+
+    padding: 1rem;
+
+    background-color: white;
+
+    border: 1px solid #d5cfc1;
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+.ejemplar-card:hover {
+    background-color: #f0ebdd;
+
+    transform: translateY(-2px);
+}
+
+.ejemplar-id {
+    font-weight: bold;
+}
+
+.ejemplar-taxon {
+    font-style: italic;
+}
+
+.estado {
+    padding: 0.4rem 0.8rem;
+
+    border-radius: 20px;
+
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.accedido {
+    background-color: #cfe8d2;
+}
+
+.adquisicion {
+    background-color: #f4e7b5;
+}
+
+.desaccedido {
+    background-color: #f0c7c7;
+}
