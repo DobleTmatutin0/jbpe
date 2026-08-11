@@ -39,7 +39,7 @@ CREATE TABLE m03.sitio_recoleccion (
     latitud NUMERIC(9,6) CHECK (latitud BETWEEN -90 AND 90),
     longitud NUMERIC(9,6) CHECK (longitud BETWEEN -180 AND 180),
     altitud NUMERIC(6,2) CHECK (altitud BETWEEN -500 AND 9000),
-    
+
     locacion_id INTEGER NOT NULL,
         CONSTRAINT fk_sitio_recoleccion_a_locacion
             FOREIGN KEY(locacion_id)
