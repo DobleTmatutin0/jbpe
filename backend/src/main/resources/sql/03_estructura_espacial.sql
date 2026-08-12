@@ -3,12 +3,12 @@
 -- =================================================
 CREATE TABLE m03.sector (
     id SERIAL PRIMARY KEY,
-    lvl_sector m03.sector_level,
+    lvl_sector m03.sector_level NOT NULL,
     parent_id INTEGER,
         CONSTRAINT fk_sector_padre
             FOREIGN KEY(parent_id)
             REFERENCES m03.sector(id),
-    nombre VARCHAR(150),
+    nombre VARCHAR(150) NOT NULL,
 
     CONSTRAINT chk_no_self_reference CHECK (id != parent_id)
 );
@@ -18,12 +18,12 @@ CREATE TABLE m03.sector (
 -- =================================================
 CREATE TABLE m03.locacion (
     id SERIAL PRIMARY KEY,
-    locacion_lvl m03.location_level,
+    locacion_lvl m03.location_level NOT NULL,
     parent_id INTEGER,
         CONSTRAINT fk_locacion_padre
             FOREIGN KEY (parent_id)
             REFERENCES m03.locacion(id),
-    nombre VARCHAR(100),
+    nombre VARCHAR(100) NOT NULL,
 
     CONSTRAINT chk_no_self_reference CHECK (id != parent_id)
 );
