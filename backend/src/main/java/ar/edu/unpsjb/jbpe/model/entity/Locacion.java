@@ -1,6 +1,7 @@
 package ar.edu.unpsjb.jbpe.model.entity;
 
 import ar.edu.unpsjb.jbpe.model.enumeration.LocationLevel;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -28,6 +29,7 @@ public class Locacion {
     private Long id;
 
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private LocationLevel locacionLvl;
 
     @ManyToOne

@@ -1,6 +1,7 @@
 package ar.edu.unpsjb.jbpe.model.entity;
 
 import ar.edu.unpsjb.jbpe.model.enumeration.SectorLevel;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -28,7 +29,8 @@ public class Sector {
     private Long id;
 
     @Enumerated(EnumType.STRING)
-    private SectorLevel SectorLvl;
+    @Column(nullable = false)
+    private SectorLevel sectorLvl;
 
     // parent_id
     @ManyToOne
