@@ -53,7 +53,7 @@ CREATE TABLE m03.germoplasma_colectado (
         CONSTRAINT fk_germoplasma_a_ejemplar
         FOREIGN KEY (adquisicion_id)
         REFERENCES m03.ejemplar(id),
-    tipo_germoplasma m03.tipo_germoplasma
+    tipo_germoplasma m03.tipo_germoplasma NOT NULL
 );
 
 -- =================================================
