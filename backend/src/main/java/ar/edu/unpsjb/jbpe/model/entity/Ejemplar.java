@@ -47,6 +47,9 @@ public class Ejemplar {
     @OneToMany(mappedBy = "ejemplar")
     private List<GermoplasmaColectado> germoplasmasColectados;
 
+    @OneToMany(mappedBy = "ejemplar")
+    private List<Evento> eventos;
+
     @ManyToOne
     @JoinColumn(name = "recolectado_por", nullable = false)
     private Persona recolectadoPor;
