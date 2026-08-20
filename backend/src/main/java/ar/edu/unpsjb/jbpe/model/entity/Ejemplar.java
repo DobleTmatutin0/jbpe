@@ -1,8 +1,8 @@
 package ar.edu.unpsjb.jbpe.model.entity;
 
+import java.util.List;
 import java.time.LocalDate;
-
-import org.hibernate.annotations.Audited.Table;
+import java.time.LocalDateTime;
 
 import ar.edu.unpsjb.jbpe.model.enumeration.EstadoEjemplar;
 import ar.edu.unpsjb.jbpe.model.enumeration.Procedencia;
@@ -11,6 +11,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,27 +35,34 @@ public class Ejemplar {
     @Column(name = "adquisicion_id")
     private String adquisicionId;
 
-    private LocalDate marcaTemporal;
+    private LocalDateTime marcaTemporal;
 
-    @Column(name = "taxon_actual_id")
+    @ManyToOne
+    @JoinColumn(name = "taxon_actual_id")
     private NombreEspecie taxonActual;
 
     @Column(name = "estado")
     private EstadoEjemplar estadoActual = EstadoEjemplar.INDEFINIDO;
 
-    @Column(nullable = false)
+    @OneToMany(mappedBy = "ejemplar")
+    private List<GermoplasmaColectado> germoplasmasColectados;
+
+    @ManyToOne
+    @JoinColumn(name = "recolectado_por", nullable = false)
     private Persona recolectadoPor;
 
     @Column(nullable = false)
     private LocalDate fechaDeRecoleccion;
 
-    @Column(nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "sitio_recoleccion_id", nullable = false)
     private SitioDeRecoleccion sitioDeRecoleccion;
 
     private Procedencia procedencia;
     private String observaciones;
 
-    @Column(name = "estado_actual")
+    @ManyToOne
+    @JoinColumn(name = "sector_actual_id")
     private Sector sectorActual;
 
     @Column(name = "accesion_id")
