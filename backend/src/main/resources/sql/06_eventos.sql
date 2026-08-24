@@ -31,15 +31,15 @@ CREATE TABLE m03.evento_ingreso (
 
 CREATE TABLE m03.evento_transplante (
     id SERIAL PRIMARY KEY,
-    event_id INTEGER NOT NULL,
+    event_id INTEGER UNIQUE NOT NULL,
         CONSTRAINT fk_evento_base_transplante
             FOREIGN KEY(event_id)
             REFERENCES m03.evento(id),
-    sector_inicial INTEGER,
+    sector_inicial INTEGER NOT NULL,
         CONSTRAINT fk_sector_primer_transplante
             FOREIGN KEY(sector_inicial)
             REFERENCES m03.sector(id),
-    transplantador_por_id INTEGER,
+    transplantador_por_id INTEGER NOT NULL,
         CONSTRAINT fk_persona_transplante
             FOREIGN KEY(transplantador_por_id)
             REFERENCES m03.persona(id),
