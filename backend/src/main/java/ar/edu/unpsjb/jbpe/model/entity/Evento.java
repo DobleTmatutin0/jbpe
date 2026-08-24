@@ -25,7 +25,7 @@ import lombok.Setter;
 
 public class Evento {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "tipo_evento", nullable = false)
