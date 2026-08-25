@@ -24,7 +24,7 @@ import ar.edu.unpsjb.jbpe.model.enumeration.TipoPersona;
 
 public class Persona {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@Column(nullable = false)
