@@ -59,7 +59,7 @@ CREATE TABLE m03.accesion (
 
 CREATE TABLE m03.evento_desaccesion (
     id SERIAL PRIMARY KEY,
-    event_id INTEGER NOT NULL,
+    event_id INTEGER UNIQUE NOT NULL,
         CONSTRAINT fk_evento_base_desaccesion
             FOREIGN KEY(event_id)
             REFERENCES m03.evento(id),
@@ -69,7 +69,7 @@ CREATE TABLE m03.evento_desaccesion (
 
 CREATE TABLE m03.evento_chequeo_anual (
     id SERIAL PRIMARY KEY,
-    event_id INTEGER NOT NULL,
+    event_id INTEGER UNIQUE NOT NULL,
         CONSTRAINT fk_evento_base_chequeo_anual
             FOREIGN KEY(event_id)
             REFERENCES m03.evento(id),
@@ -87,7 +87,7 @@ IS 'Altura de la planta medida en centímetros (valor max 999.999 cm)';
 
 CREATE TABLE m03.evento_determinar_taxon (
     id SERIAL PRIMARY KEY,
-    event_id INTEGER NOT NULL,
+    event_id INTEGER UNIQUE NOT NULL,
         CONSTRAINT fk_evento_base_determinar_taxon
             FOREIGN KEY(event_id)
             REFERENCES m03.evento(id),
