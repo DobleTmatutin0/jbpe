@@ -33,6 +33,10 @@ public class Ejemplar {
     private Long id;
 
     @Column(name = "adquisicion_id")
+    @GeneratedValue(
+        strategy = GenerationType.SEQUENCE,
+        generator = "adquisicion_seq"
+    )
     private String adquisicionId;
 
     private LocalDateTime marcaTemporal;
@@ -69,6 +73,10 @@ public class Ejemplar {
     private Sector sectorActual;
 
     @Column(name = "accesion_id")
+    @GeneratedValue(
+        strategy = GenerationType.SEQUENCE,
+        generator = "accesion_seq"
+    )
     private Long accesionId;
 
     private String nombreOriginal;
