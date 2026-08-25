@@ -29,7 +29,7 @@ import lombok.Setter;
 
 public class Ejemplar {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "adquisicion_id")

@@ -23,7 +23,7 @@ import lombok.NoArgsConstructor;
 public class DetalleEspecie {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
 	@ManyToOne
