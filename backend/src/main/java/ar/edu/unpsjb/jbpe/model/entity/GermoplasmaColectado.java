@@ -1,8 +1,13 @@
 package ar.edu.unpsjb.jbpe.model.entity;
 
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
+
 import ar.edu.unpsjb.jbpe.model.enumeration.TipoDeGermoplasma;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -31,5 +36,7 @@ public class GermoplasmaColectado {
     private Ejemplar ejemplar;
 
     @Column(name = "tipo_germoplasma", nullable = false)
+    @Enumerated(EnumType.STRING)
+    @JdbcTypeCode(SqlTypes.NAMED_ENUM)
     private TipoDeGermoplasma tipoDeGermoplasma;
 }

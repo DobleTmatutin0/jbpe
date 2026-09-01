@@ -13,6 +13,9 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.NoArgsConstructor;
 
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
+
 import ar.edu.unpsjb.jbpe.model.enumeration.TipoPersona;
 
 @Entity
@@ -34,5 +37,7 @@ public class Persona {
 	private String apellido;
 
 	@Enumerated(EnumType.STRING)
+	@JdbcTypeCode(SqlTypes.NAMED_ENUM)
+	@Column(name = "tipo_persona", nullable = false)
 	private TipoPersona tipoDePersona;
 }

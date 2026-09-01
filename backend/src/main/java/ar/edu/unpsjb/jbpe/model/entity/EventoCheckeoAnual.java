@@ -2,8 +2,14 @@ package ar.edu.unpsjb.jbpe.model.entity;
 
 import java.math.BigDecimal;
 
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
+
 import ar.edu.unpsjb.jbpe.model.enumeration.EstadoDeSaludDelEjemplar;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -35,6 +41,9 @@ public class EventoCheckeoAnual {
     private BigDecimal diametroEnCm;
 
     // enum
+    @Column(name = "estado_de_salud", nullable = false)
+    @Enumerated(EnumType.STRING)
+    @JdbcTypeCode(SqlTypes.NAMED_ENUM)
     private EstadoDeSaludDelEjemplar estadoDeSalud;
 
     private boolean florecio;

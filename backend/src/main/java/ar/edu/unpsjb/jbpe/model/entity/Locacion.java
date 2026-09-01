@@ -1,5 +1,8 @@
 package ar.edu.unpsjb.jbpe.model.entity;
 
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
+
 import ar.edu.unpsjb.jbpe.model.enumeration.LocationLevel;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -29,7 +32,8 @@ public class Locacion {
     private Long id;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @JdbcTypeCode(SqlTypes.NAMED_ENUM)
+    @Column(name = "locacion_lvl", nullable = false)
     private LocationLevel locacionLvl;
 
     @ManyToOne

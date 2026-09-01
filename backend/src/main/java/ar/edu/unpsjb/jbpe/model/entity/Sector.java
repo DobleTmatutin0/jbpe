@@ -1,5 +1,8 @@
 package ar.edu.unpsjb.jbpe.model.entity;
 
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
+
 import ar.edu.unpsjb.jbpe.model.enumeration.SectorLevel;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -28,8 +31,9 @@ public class Sector {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    @JdbcTypeCode(SqlTypes.NAMED_ENUM)
     private SectorLevel sectorLvl;
 
     // parent_id

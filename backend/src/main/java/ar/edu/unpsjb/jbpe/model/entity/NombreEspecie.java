@@ -15,6 +15,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
+
 import ar.edu.unpsjb.jbpe.model.enumeration.TipoDeSinonimia;
 
 @Entity
@@ -39,6 +42,8 @@ public class NombreEspecie {
 
     private String linkFloraArg;
 
+    @Column(name = "tipo_nombre", nullable = false)
     @Enumerated(EnumType.STRING)
+    @JdbcTypeCode(SqlTypes.NAMED_ENUM)
     private TipoDeSinonimia tipoDeSinonimia = TipoDeSinonimia.ACCEPTED;
 }
