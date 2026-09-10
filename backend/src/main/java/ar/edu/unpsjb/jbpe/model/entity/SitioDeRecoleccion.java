@@ -26,7 +26,7 @@ import lombok.NoArgsConstructor;
 public class SitioDeRecoleccion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @Column(nullable = false)
     private String nombre;

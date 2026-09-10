@@ -29,7 +29,7 @@ import lombok.Setter;
 public class GermoplasmaColectado {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @ManyToOne
     @JoinColumn(name = "adquisicion_id", nullable = false)

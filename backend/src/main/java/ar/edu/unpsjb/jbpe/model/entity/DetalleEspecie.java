@@ -24,14 +24,14 @@ public class DetalleEspecie {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Integer id;
 
 	@ManyToOne
 	@JoinColumn(name = "genero_id", nullable = false)
 	private Genero genero;
 
-	@Column(unique = true, nullable = false)
-	private String nobreAceptado;
+	@Column(name = "nombre_especie_aceptado", unique = true, nullable = false)
+	private String nombreAceptado;
 
 	private String linkFloraArg;
 

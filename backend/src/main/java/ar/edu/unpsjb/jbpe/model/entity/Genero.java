@@ -24,7 +24,7 @@ public class Genero {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Integer id;
 
 	@ManyToOne
 	@JoinColumn(name = "familia_id", nullable = false)

@@ -31,7 +31,7 @@ public class NombreEspecie {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Integer id;
 
     @ManyToOne
     @JoinColumn(name = "detalle_id", nullable = false)

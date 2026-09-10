@@ -30,14 +30,16 @@ import lombok.Setter;
 public class EventoCheckeoAnual {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @OneToOne
     @JoinColumn(name = "event_id", nullable = false)
     private Evento evento;
 
+    @Column(name = "altura_cm")
     private BigDecimal alturaEnCm;
 
+    @Column(name = "diametro_cm")
     private BigDecimal diametroEnCm;
 
     // enum

@@ -69,7 +69,7 @@ CREATE TABLE m03.evento_desaccesion (
 
 CREATE TABLE m03.evento_chequeo_anual (
     id SERIAL PRIMARY KEY,
-    event_id INTEGER UNIQUE NOT NULL,
+    event_id BIGINT UNIQUE NOT NULL,
         CONSTRAINT fk_evento_base_chequeo_anual
             FOREIGN KEY(event_id)
             REFERENCES m03.evento(id),

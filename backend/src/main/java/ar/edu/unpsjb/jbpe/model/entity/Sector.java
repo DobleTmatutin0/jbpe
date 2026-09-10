@@ -29,7 +29,7 @@ import lombok.NoArgsConstructor;
 public class Sector {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
@@ -38,7 +38,7 @@ public class Sector {
 
     // parent_id
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "parent_id")
     private Sector sectorPadre;
 
     private String nombre;

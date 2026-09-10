@@ -26,7 +26,7 @@ import lombok.Setter;
 public class EventoIngreso {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @OneToOne
     @JoinColumn(name = "event_id", nullable = false)

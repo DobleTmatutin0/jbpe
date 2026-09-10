@@ -24,7 +24,7 @@ import lombok.Setter;
 public class Familia {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Integer id;
 
     @ManyToOne
     @JoinColumn(name = "orden_id", nullable = false)

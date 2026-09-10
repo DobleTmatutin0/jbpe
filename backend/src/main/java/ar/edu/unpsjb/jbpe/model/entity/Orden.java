@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 public class Orden {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Integer id;
 
     @Column(nullable = false)
     private String nombre;

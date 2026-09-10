@@ -29,7 +29,7 @@ import lombok.NoArgsConstructor;
 public class Locacion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @Enumerated(EnumType.STRING)
     @JdbcTypeCode(SqlTypes.NAMED_ENUM)
@@ -37,7 +37,7 @@ public class Locacion {
     private LocationLevel locacionLvl;
 
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "parent_id")
     private Locacion locacionPadre;
 
     private String nombre;

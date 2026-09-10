@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -36,13 +37,9 @@ import lombok.Setter;
 public class Ejemplar {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @Column(name = "adquisicion_id")
-    @GeneratedValue(
-        strategy = GenerationType.SEQUENCE,
-        generator = "adquisicion_seq"
-    )
     private String adquisicionId;
 
     private LocalDateTime marcaTemporal;
@@ -66,7 +63,7 @@ public class Ejemplar {
     @JoinColumn(name = "recolectado_por", nullable = false)
     private Persona recolectadoPor;
 
-    @Column(nullable = false)
+    @Column(name = "fecha_recoleccion", nullable = false)
     private LocalDate fechaDeRecoleccion;
 
     @ManyToOne
@@ -84,11 +81,7 @@ public class Ejemplar {
     private Sector sectorActual;
 
     @Column(name = "accesion_id")
-    @GeneratedValue(
-        strategy = GenerationType.SEQUENCE,
-        generator = "accesion_seq"
-    )
-    private Long accesionId;
+    private Integer accesionId;
 
     private String nombreOriginal;
     private String nombreActual;
