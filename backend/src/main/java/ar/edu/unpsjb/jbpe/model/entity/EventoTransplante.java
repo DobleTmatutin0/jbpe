@@ -34,10 +34,10 @@ public class EventoTransplante {
     private Sector sectorInicial;
 
     @ManyToOne
-    @JoinColumn(name = "transplantado_por_id", nullable = false)
-    private Persona transplantadoPor;
+    @JoinColumn(name = "trasplantado_por_id", nullable = false)
+    private Persona trasplantadoPor;
 
-    @Column(name = "transplantador_por_id")
+    @Column(name = "como_fue_plantado_en_predio")
     private String ComoFuePlantadoEnPredio;
 
 }
