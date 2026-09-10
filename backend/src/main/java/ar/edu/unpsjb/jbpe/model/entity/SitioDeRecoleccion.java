@@ -1,6 +1,6 @@
 package ar.edu.unpsjb.jbpe.model.entity;
 
-import java.time.LocalDate;
+// import java.time.LocalDate;
 import java.math.BigDecimal;
 
 import jakarta.persistence.Column;
