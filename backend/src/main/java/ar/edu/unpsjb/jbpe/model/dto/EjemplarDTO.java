@@ -43,7 +43,7 @@ public class EjemplarDTO {
 
 	private SectorDTO sectorActual;
 
-	private Long accesionId;
+	private Integer accesionId;
 
 	private String nombreOriginal;
 

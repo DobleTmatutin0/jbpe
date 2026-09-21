@@ -40,7 +40,7 @@ public class SitioDeRecoleccionDTO {
     private BigDecimal altitud;
 
     @NotNull(message = "locacionId es obligatorio")
-    private Long locacionId;
+    private Integer locacionId;
 
     private String nombreLocacion;
 
