@@ -1,6 +1,5 @@
 package ar.edu.unpsjb.jbpe.model.dto;
 
-import java.time.LocalDate;
 import java.math.BigDecimal;
 
 import jakarta.validation.constraints.DecimalMin;
