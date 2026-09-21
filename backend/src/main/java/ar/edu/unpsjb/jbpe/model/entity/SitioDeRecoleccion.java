@@ -31,9 +31,6 @@ public class SitioDeRecoleccion {
     @Column(nullable = false)
     private String nombre;
 
-    // @Column(name = "fecha_recoleccion", nullable = false)
-    // private LocalDate fechaDeRecoleccion;
-
     private BigDecimal latitud;
 
     private BigDecimal longitud;
