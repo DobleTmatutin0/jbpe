@@ -1,19 +1,32 @@
 package ar.edu.unpsjb.jbpe.model.enumeration;
 
+import jakarta.persistence.EnumeratedValue;
+
 // estado_salud_enum
 public enum EstadoDeSaludDelEjemplar {
-    EXCELENTE,
-    BUENO,
-    REGULAR,
-    MALO,
-    CRITICO,
-    MUERTO,
-    INFECTADO,
-    CON_PLAGA,
-    INVASOR,
-    DESACORDE,
-    PERDIDO,
-    OTRO
+    EXCELENTE("excelente"),
+    BUENO("bueno"),
+    REGULAR("regular"),
+    MALO("malo"),
+    CRITICO("critico"),
+    MUERTO("muerto"),
+    INFECTADO("infectado"),
+    CON_PLAGA("con_plaga"),
+    INVASOR("invasor"),
+    DESACORDE("desacorde"),
+    PERDIDO("perdido"),
+    OTRO("otro");
+
+    @EnumeratedValue
+    private final String sqlValue;
+
+    EstadoDeSaludDelEjemplar(String sqlValue) {
+        this.sqlValue = sqlValue;
+    }
+
+    public String getSqlValue() {
+        return sqlValue;
+    }
 }
 
 // Yo sacaria "con plaga", "perdido", "desacorde"

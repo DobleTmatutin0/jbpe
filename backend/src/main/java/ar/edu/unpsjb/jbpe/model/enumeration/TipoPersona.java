@@ -1,5 +1,7 @@
 package ar.edu.unpsjb.jbpe.model.enumeration;
 
+import jakarta.persistence.EnumeratedValue;
+
 // tipo_persona (son distintos a los reales)
 public enum TipoPersona {
 
@@ -9,9 +11,20 @@ public enum TipoPersona {
     // CIENTIFICO
 
     // Datos reales de la db
-    DONADOR,
-    COLECTOR,
-    CIENTIFICO,
-    CULTIVADOR,
-    OTRO
+    DONADOR("donador"),
+    COLECTOR("colector"),
+    CIENTIFICO("cientifico"),
+    CULTIVADOR("cultivador"),
+    OTRO("otro");
+
+    @EnumeratedValue
+    private final String sqlValue;
+
+    TipoPersona(String sqlValue) {
+        this.sqlValue = sqlValue;
+    }
+
+    public String getSqlValue() {
+        return sqlValue;
+    }
 }
