@@ -1,5 +1,6 @@
 package ar.edu.unpsjb.jbpe.model.dto.summary;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -7,9 +8,10 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 
 public class OrdenSummaryDTO {
-    private Long id;
+    private Integer id;
     private String nombre;
 
 }
