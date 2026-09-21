@@ -4,9 +4,12 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
 import ar.edu.unpsjb.jbpe.model.dto.EjemplarDTO;
 import ar.edu.unpsjb.jbpe.model.entity.Ejemplar;
+
+@Repository
 
 public interface EjemplarRepository extends  JpaRepository<Ejemplar, Integer>{
     // Default JpaRepository methods
@@ -21,19 +24,19 @@ public interface EjemplarRepository extends  JpaRepository<Ejemplar, Integer>{
                 ne.nombre,
                 ne.linkFloraArg,
                 ne.tipoDeSinonimia,
-                new ar.edu.unpsjb.jbpe.model.dto.DetalleEspecieSummaryDTO(
+                new ar.edu.unpsjb.jbpe.model.dto.summary.DetalleEspecieSummaryDTO(
                     de.id,
-                    de.nombre
+                    de.nombreAceptado
                 ),
-                new ar.edu.unpsjb.jbpe.model.dto.GeneroSummaryDTO(
+                new ar.edu.unpsjb.jbpe.model.dto.summary.GeneroSummaryDTO(
                     g.id,
                     g.nombre
                 ),
-                new ar.edu.unpsjb.jbpe.model.dto.FamiliaSummaryDTO(
+                new ar.edu.unpsjb.jbpe.model.dto.summary.FamiliaSummaryDTO(
                     f.id,
                     f.nombre
                 ),
-                new ar.edu.unpsjb.jbpe.model.dto.OrdenSummaryDTO(
+                new ar.edu.unpsjb.jbpe.model.dto.summary.OrdenSummaryDTO(
                     o.id,
                     o.nombre
                 )
@@ -47,8 +50,8 @@ public interface EjemplarRepository extends  JpaRepository<Ejemplar, Integer>{
                 sdr.latitud,
                 sdr.longitud,
                 sdr.altitud,
-                sdr.locacionId,
-                sdr.nombreLocacion,
+                l.id,
+                l.nombre,
                 sdr.descripcion
             ),
             e.procedencia,
@@ -57,8 +60,8 @@ public interface EjemplarRepository extends  JpaRepository<Ejemplar, Integer>{
                 s.id,
                 s.nombre,
                 s.sectorLvl,
-                s.sectorPadre.id,
-                s.sectorPadre.nombre
+                sp.id,
+                sp.nombre
             ),
             e.accesionId,
             e.nombreOriginal,
@@ -72,7 +75,9 @@ public interface EjemplarRepository extends  JpaRepository<Ejemplar, Integer>{
         LEFT JOIN g.familia AS f
         LEFT JOIN f.orden AS o
         LEFT JOIN e.sitioDeRecoleccion AS sdr
+        LEFT JOIN sdr.locacion AS l
         LEFT JOIN e.sectorActual AS s
+        LEFT JOIN s.sectorPadre AS sp
         """)
     List<EjemplarDTO> getAll();
 
