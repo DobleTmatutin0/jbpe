@@ -9,6 +9,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import jakarta.validation.constraints.DecimalMax;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.NoArgsConstructor;
@@ -16,18 +17,16 @@ import lombok.NoArgsConstructor;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 
 public class SitioDeRecoleccionDTO {
 
-    private Long id;
+    private Integer id;
 
     @NotNull(message = "El nombre es obligatorio (not NULL)")
     @NotBlank(message = "El nombre no puede estar en blanco")
     @Size(max = 150, message = "El nombre no puede superar los 150 caracteres")
     private String nombre;
-
-    @NotNull(message = "La fecha de recoleccion es obligatoria (not NULL)")
-    private LocalDate fechaDeRecoleccion;
 
     @DecimalMin(value = "-90", message = "La latitud no puede ser menor a -90")
     @DecimalMax(value = "90", message = "La latitud no puede ser mayor a 90")

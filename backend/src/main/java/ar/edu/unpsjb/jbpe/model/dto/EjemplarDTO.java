@@ -2,12 +2,12 @@ package ar.edu.unpsjb.jbpe.model.dto;
 
 import java.time.LocalDate;
 
-import ar.edu.unpsjb.jbpe.model.entity.NombreEspecie;
+import ar.edu.unpsjb.jbpe.model.entity.Persona;
 import ar.edu.unpsjb.jbpe.model.enumeration.EstadoEjemplar;
 import ar.edu.unpsjb.jbpe.model.enumeration.Procedencia;
 
 import jakarta.validation.constraints.NotNull;
-
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,20 +15,21 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 
 public class EjemplarDTO {
 
-	private Long id;
+	private Integer id;
 
 	//chequear formato?? A-...
-	private String adqusicionId;
+	private String adquisicionId;
 
-	private NombreEspecie taxonActual;
+	private NombreEspecieDTO taxonActual;
 
 	private EstadoEjemplar estadoActual;
 
 	@NotNull(message = "Especificar el recolector es obligatorio (not NULL)")
-	private PersonaDTO recolectadoPor;
+	private Persona recolectadoPor;
 
 	@NotNull(message = "La fecha de recoleccion es obligatoria (not NULL)")
 	private LocalDate fechaDeRecoleccion;
