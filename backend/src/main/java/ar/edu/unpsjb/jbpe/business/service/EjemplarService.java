@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import ar.edu.unpsjb.jbpe.business.repository.EjemplarRepository;
 import ar.edu.unpsjb.jbpe.model.dto.EjemplarDTO;
-import ar.edu.unpsjb.jbpe.model.entity.Ejemplar;
+import ar.edu.unpsjb.jbpe.model.dto.EjemplarMinDTO;
 
 @Service
 
@@ -17,12 +17,12 @@ public  class EjemplarService {
         this.ejemplarRepository = ejemplarRepository;
     }
 
-    public List<EjemplarDTO> findAll() {
-        List<EjemplarDTO> result = ejemplarRepository.getAll();
+    public List<EjemplarMinDTO> findAll() {
+        List<EjemplarMinDTO> result = ejemplarRepository.getAll();
         return result;
     }
 
-    public List<Ejemplar> findAllEntities() {
-        return ejemplarRepository.findAll();
+    public EjemplarDTO findByAdquisicionId(String anAdquisicionId) {
+        return ejemplarRepository.getEjemplarById(anAdquisicionId);
     }
 }

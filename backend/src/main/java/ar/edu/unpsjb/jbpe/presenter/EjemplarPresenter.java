@@ -2,6 +2,7 @@ package ar.edu.unpsjb.jbpe.presenter;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,9 +24,9 @@ public class EjemplarPresenter {
         return Response.ok(ejemplarService.findAll());
     }
 
-    @GetMapping("/test")
-    public ResponseEntity<Object> test() {
-        return Response.ok(ejemplarService.findAllEntities());
+    @GetMapping("/{adquisicionId}")
+    public ResponseEntity<Object> findByAdquisicionId(@PathVariable("adquisicionId") String anAdquisicionId) {
+        return Response.ok(ejemplarService.findByAdquisicionId(anAdquisicionId));
     }
 
 }
