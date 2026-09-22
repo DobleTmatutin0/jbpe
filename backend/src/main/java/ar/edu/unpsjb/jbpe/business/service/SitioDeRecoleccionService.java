@@ -27,7 +27,7 @@ public class SitioDeRecoleccionService {
     }
 
     public  List<SitioDeRecoleccionDTO> findAllDTO() {
-        return this.sitioDeRecoleccionRepository.
+        return this.sitioDeRecoleccionRepository.findAllDTO();
     }
 
     public SitioDeRecoleccionDTO findDTOById(Integer aSitioDeRecoleccionId) {
