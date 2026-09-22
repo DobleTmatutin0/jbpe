@@ -3,11 +3,13 @@ package ar.edu.unpsjb.jbpe.presenter;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import ar.edu.unpsjb.jbpe.Response;
 import ar.edu.unpsjb.jbpe.business.service.EjemplarService;
+import ar.edu.unpsjb.jbpe.model.dto.EjemplarDTO;
 
 @RestController
 @RequestMapping("ejemplar")
@@ -29,4 +31,11 @@ public class EjemplarPresenter {
         return Response.ok(ejemplarService.findByAdquisicionId(anAdquisicionId));
     }
 
+    @PostMapping()
+    public ResponseEntity<Object> create(EjemplarDTO anEjemplarDTO) {
+        if (anEjemplarDTO.getId() != null) {
+            return Response.error(anEjemplarDTO, "un nuevo ejemplar no puede tener id");
+        }
+        return Response.ok(ejemplarService.save(anEjemplarDTO));
+    }
 }
