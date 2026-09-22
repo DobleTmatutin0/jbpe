@@ -13,7 +13,7 @@ import ar.edu.unpsjb.jbpe.model.entity.Ejemplar;
 
 @Repository
 
-public interface EjemplarRepository extends  JpaRepository<Ejemplar, Integer>{
+public interface EjemplarRepository extends JpaRepository<Ejemplar, Integer> {
     // Default JpaRepository methods
 
 
@@ -82,7 +82,7 @@ public interface EjemplarRepository extends  JpaRepository<Ejemplar, Integer>{
             LEFT JOIN s.sectorPadre AS sp
         WHERE e.adquisicionId = :anAdquisicionId
         """)
-    EjemplarDTO getEjemplarById(@Param("anAdquisicionId") String anAdquisicionId);
+    EjemplarDTO findDTOById(@Param("anAdquisicionId") String anAdquisicionId);
 
     @Query("""
         SELECT new ar.edu.unpsjb.jbpe.model.dto.EjemplarMinDTO(
