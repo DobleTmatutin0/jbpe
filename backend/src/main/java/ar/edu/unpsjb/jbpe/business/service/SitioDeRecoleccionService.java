@@ -23,7 +23,7 @@ public class SitioDeRecoleccionService {
         this.locacionRepository = locacionRepository;
     }
 
-    public SitioDeRecoleccionDTO findById(Integer aSitioDeRecoleccionId) {
+    public SitioDeRecoleccionDTO findDTOById(Integer aSitioDeRecoleccionId) {
         return this.sitioDeRecoleccionRepository.findDTOById(aSitioDeRecoleccionId);
     }
 
