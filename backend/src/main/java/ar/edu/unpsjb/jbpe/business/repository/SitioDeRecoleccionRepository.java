@@ -29,7 +29,6 @@ public interface SitioDeRecoleccionRepository extends JpaRepository<SitioDeRecol
         )
         FROM SitioDeRecoleccion AS sdr
             LEFT JOIN sdr.locacion AS l
-        WHERE sdr.id = :aSitioDeRecoleccionId
     """)
     List<SitioDeRecoleccionDTO> findAllDTO();
 
