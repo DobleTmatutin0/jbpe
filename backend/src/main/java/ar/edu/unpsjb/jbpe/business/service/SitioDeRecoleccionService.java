@@ -1,7 +1,10 @@
 package ar.edu.unpsjb.jbpe.business.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 
 import ar.edu.unpsjb.jbpe.business.repository.LocacionRepository;
 import ar.edu.unpsjb.jbpe.business.repository.SitioDeRecoleccionRepository;
@@ -21,6 +24,10 @@ public class SitioDeRecoleccionService {
     ) {
         this.sitioDeRecoleccionRepository = sitioDeRecoleccionRepository;
         this.locacionRepository = locacionRepository;
+    }
+
+    public  List<SitioDeRecoleccionDTO> findAllDTO() {
+        return this.sitioDeRecoleccionRepository.
     }
 
     public SitioDeRecoleccionDTO findDTOById(Integer aSitioDeRecoleccionId) {
