@@ -26,7 +26,7 @@ public  class EjemplarService {
     }
 
     public List<EjemplarMinDTO> findAll() {
-        List<EjemplarMinDTO> result = ejemplarRepository.getAll();
+        List<EjemplarMinDTO> result = ejemplarRepository.getAllDTO();
         return result;
     }
 

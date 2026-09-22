@@ -16,6 +16,20 @@ import ar.edu.unpsjb.jbpe.model.entity.Ejemplar;
 public interface EjemplarRepository extends JpaRepository<Ejemplar, Integer> {
     // Default JpaRepository methods
 
+    @Query("""
+        SELECT new ar.edu.unpsjb.jbpe.model.dto.EjemplarMinDTO(
+            e.id,
+            e.adquisicionId,
+            new ar.edu.unpsjb.jbpe.model.dto.summary.NombreEspecieSummaryDTO(
+                ne.id,
+                ne.nombre
+            ),
+            e.estadoActual
+        )
+        FROM  Ejemplar As e
+            LEFT JOIN e.taxonActual as ne
+    """)
+    List<EjemplarMinDTO> getAllDTO();
 
     @Query("""
         SELECT new ar.edu.unpsjb.jbpe.model.dto.EjemplarDTO(
@@ -83,20 +97,5 @@ public interface EjemplarRepository extends JpaRepository<Ejemplar, Integer> {
         WHERE e.adquisicionId = :anAdquisicionId
         """)
     EjemplarDTO findDTOById(@Param("anAdquisicionId") String anAdquisicionId);
-
-    @Query("""
-        SELECT new ar.edu.unpsjb.jbpe.model.dto.EjemplarMinDTO(
-            e.id,
-            e.adquisicionId,
-            new ar.edu.unpsjb.jbpe.model.dto.summary.NombreEspecieSummaryDTO(
-                ne.id,
-                ne.nombre
-            ),
-            e.estadoActual
-        )
-        FROM  Ejemplar As e
-            LEFT JOIN e.taxonActual as ne
-    """)
-    List<EjemplarMinDTO> getAll();
 
 }
