@@ -5,7 +5,7 @@ import ar.edu.unpsjb.jbpe.model.enumeration.LocationLevel;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,9 +13,10 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 
 public class LocacionDTO {
-    private Long id;
+    private Integer id;
 
     @NotNull(message = "El nombre es obligatorio (not NULL)")
     @NotBlank(message = "El nombre no puede estar en blanco")
@@ -25,9 +26,8 @@ public class LocacionDTO {
     @NotNull(message = "El nivel de la locacion es obligatorio")
     private LocationLevel locacionLvl;
 
-    private Long locacionPadreId;
+    private Integer locacionPadreId;
 
     private String nombreLocacionPadre;
-
 
 }
