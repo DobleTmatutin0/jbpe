@@ -2,9 +2,9 @@ package ar.edu.unpsjb.jbpe.presenter;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import ar.edu.unpsjb.jbpe.Response;
@@ -27,7 +27,7 @@ public class LocacionPresenter {
     }
 
     @GetMapping("/{locacionId}")
-    public ResponseEntity<Object> findById(@RequestParam("locacionId") Integer aLocacionId) {
+    public ResponseEntity<Object> findById(@PathVariable ("locacionId") Integer aLocacionId) {
         return Response.ok(locacionService.findDTOById(aLocacionId));
     }
 
