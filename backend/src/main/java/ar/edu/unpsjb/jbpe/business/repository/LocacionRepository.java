@@ -27,8 +27,8 @@ public interface LocacionRepository extends JpaRepository<Locacion, Integer> {
         FROM Locacion AS l
             LEFT JOIN l.locacionPadre AS lp
     """)
-
     List<LocacionDTO> findAllDTO();
+
     // agregar busqueda por termino (typeahead)
     @Query("""
         SELECT new ar.edu.unpsjb.jbpe.model.dto.LocacionDTO(
