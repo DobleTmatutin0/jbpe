@@ -2,11 +2,15 @@ package ar.edu.unpsjb.jbpe.presenter;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import ar.edu.unpsjb.jbpe.Response;
 import ar.edu.unpsjb.jbpe.business.service.EventoService;
+import ar.edu.unpsjb.jbpe.model.dto.EventoDTO;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("evento")
@@ -21,6 +25,11 @@ public class EventoPresenter {
     @GetMapping()
     public ResponseEntity<Object> findAll() {
         return Response.ok(eventoService.findAll());
+    }
+
+    @PostMapping()
+    public ResponseEntity<Object> create(@Valid @RequestParam EventoDTO aEventoDTO) {
+        return Response.ok(eventoService.save(aEventoDTO));
     }
 
 }
