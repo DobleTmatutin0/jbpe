@@ -13,7 +13,7 @@ import lombok.Setter;
 @NoArgsConstructor
 
 public class PersonaDTO {
-    private Long id;
+    private Integer id;
 
     @NotNull(message = "El nombre no puede ser NULL")
     @NotBlank(message = "El nombre no puede estar en blanco")
