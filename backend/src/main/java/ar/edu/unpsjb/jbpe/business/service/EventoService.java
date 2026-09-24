@@ -3,6 +3,7 @@ package ar.edu.unpsjb.jbpe.business.service;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.unpsjb.jbpe.business.repository.EjemplarRepository;
 import ar.edu.unpsjb.jbpe.business.repository.EventoRepository;
@@ -27,6 +28,7 @@ public class EventoService {
         return eventoRepository.findAllDTO();
     }
 
+    @Transactional
     public Evento save(EventoDTO aEventoDTO) {
         Evento eventoToSave = new Evento();
 
