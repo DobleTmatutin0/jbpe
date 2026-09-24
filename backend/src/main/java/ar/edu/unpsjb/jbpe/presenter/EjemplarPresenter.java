@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import ar.edu.unpsjb.jbpe.Response;
@@ -32,7 +33,7 @@ public class EjemplarPresenter {
     }
 
     @PostMapping()
-    public ResponseEntity<Object> create(EjemplarDTO anEjemplarDTO) {
+    public ResponseEntity<Object> create(@RequestParam EjemplarDTO anEjemplarDTO) {
         if (anEjemplarDTO.getId() != null) {
             return Response.error(anEjemplarDTO, "un nuevo ejemplar no puede tener id");
         }
