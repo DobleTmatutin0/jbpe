@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.unpsjb.jbpe.business.repository.EjemplarRepository;
 import ar.edu.unpsjb.jbpe.business.repository.GermoplasmaColectadoRepository;
+import ar.edu.unpsjb.jbpe.business.repository.PersonaRepository;
 import ar.edu.unpsjb.jbpe.business.repository.SitioDeRecoleccionRepository;
 import ar.edu.unpsjb.jbpe.model.dto.EjemplarDTO;
 import ar.edu.unpsjb.jbpe.model.dto.EjemplarMinDTO;
@@ -18,15 +19,18 @@ import ar.edu.unpsjb.jbpe.model.entity.GermoplasmaColectado;
 
 public  class EjemplarService {
     private final EjemplarRepository ejemplarRepository;
+    private final PersonaRepository personaRepository;
     private final SitioDeRecoleccionRepository sitioDeRecoleccionRepository;
     private final GermoplasmaColectadoRepository germoplasmaColectadoRepository;
 
     public EjemplarService(
         EjemplarRepository ejemplarRepository,
+        PersonaRepository personaRepository,
         SitioDeRecoleccionRepository sitioDeRecoleccionRepository,
         GermoplasmaColectadoRepository germoplasmaColectadoRepository
     ) {
         this.ejemplarRepository = ejemplarRepository;
+        this.personaRepository = personaRepository;
         this.sitioDeRecoleccionRepository = sitioDeRecoleccionRepository;
         this.germoplasmaColectadoRepository = germoplasmaColectadoRepository;
     }
@@ -44,7 +48,7 @@ public  class EjemplarService {
     public Ejemplar save(EjemplarDTO anEjemplarDTO) {
         Ejemplar ejemplarToSave = new Ejemplar();
 
-        ejemplarToSave.setRecolectadoPor(anEjemplarDTO.getRecolectadoPor());
+        ejemplarToSave.setRecolectadoPor(personaRepository.getReferenceById(anEjemplarDTO.getRecolectadoPor().getId()));
         ejemplarToSave.setFechaDeRecoleccion(anEjemplarDTO.getFechaDeRecoleccion());
         ejemplarToSave.setSitioDeRecoleccion(sitioDeRecoleccionRepository.getReferenceById(anEjemplarDTO.getSitioDeRecoleccion().getId()));
         ejemplarToSave.setProcedencia(anEjemplarDTO.getProcedencia());
