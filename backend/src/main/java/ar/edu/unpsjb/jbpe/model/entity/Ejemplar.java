@@ -86,5 +86,4 @@ public class Ejemplar {
     private String nombreActual;
     private String nombreVulgar;
 
-    // agregar lista de germoplasmas?
 }
