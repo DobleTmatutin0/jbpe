@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import ar.edu.unpsjb.jbpe.Response;
 import ar.edu.unpsjb.jbpe.business.service.EjemplarService;
 import ar.edu.unpsjb.jbpe.model.dto.EjemplarDTO;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("ejemplar")
@@ -33,7 +34,7 @@ public class EjemplarPresenter {
     }
 
     @PostMapping()
-    public ResponseEntity<Object> create(@RequestParam EjemplarDTO anEjemplarDTO) {
+    public ResponseEntity<Object> create(@Valid @RequestParam EjemplarDTO anEjemplarDTO) {
         if (anEjemplarDTO.getId() != null) {
             return Response.error(anEjemplarDTO, "un nuevo ejemplar no puede tener id");
         }

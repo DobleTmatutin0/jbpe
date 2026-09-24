@@ -2,9 +2,11 @@ package ar.edu.unpsjb.jbpe.model.dto;
 
 import java.time.LocalDate;
 
-import ar.edu.unpsjb.jbpe.model.entity.Persona;
 import ar.edu.unpsjb.jbpe.model.enumeration.TipoDeEvento;
+
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,8 +24,9 @@ public class EventoDTO {
     @NotNull(message = "La fecha del evento es obligatorio (not NULL)")
     private LocalDate fecha;
 
+    @Valid
     @NotNull(message = "El realizador de evento es obligatorio (not NULL)")
-    private Persona realizadoPor;
+    private PersonaDTO realizadoPor;
 
     @NotNull(message = "La adquisicion sobre la cual se efectua el evento es obligatoria (not NULL)")
     private String adquisicionId;
