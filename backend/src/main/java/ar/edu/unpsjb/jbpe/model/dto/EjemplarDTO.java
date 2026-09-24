@@ -1,7 +1,9 @@
 package ar.edu.unpsjb.jbpe.model.dto;
 
 import java.time.LocalDate;
+import java.util.List;
 
+import ar.edu.unpsjb.jbpe.model.entity.GermoplasmaColectado;
 import ar.edu.unpsjb.jbpe.model.entity.Persona;
 import ar.edu.unpsjb.jbpe.model.enumeration.EstadoEjemplar;
 import ar.edu.unpsjb.jbpe.model.enumeration.Procedencia;
@@ -38,6 +40,9 @@ public class EjemplarDTO {
 	private SitioDeRecoleccionDTO sitioDeRecoleccion;
 
 	private Procedencia procedencia;
+
+	//@NotNull(message = "")
+	private List<GermoplasmaColectadoDTO> germplasmasColectados;
 
 	private String observaciones;
 
