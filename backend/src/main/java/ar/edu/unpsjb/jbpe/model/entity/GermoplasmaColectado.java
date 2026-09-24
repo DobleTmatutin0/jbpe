@@ -39,4 +39,8 @@ public class GermoplasmaColectado {
     @Enumerated(EnumType.STRING)
     @JdbcTypeCode(SqlTypes.NAMED_ENUM)
     private TipoDeGermoplasma tipoDeGermoplasma;
+
+    @Column(nullable = false)
+    private Integer cantidad;
+
 }
