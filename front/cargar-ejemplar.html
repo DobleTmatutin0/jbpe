@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuevo ejemplar</title>
+    <link rel="stylesheet" href="nuevo-ejemplar.css">
+</head>
+
+<body>
+
+<header>
+    <nav>
+        <a href="#">Inicio</a>
+        <a href="#">Ejemplares</a>
+        <a href="#">Estadísticas</a>
+    </nav>
+</header>
+
+<main>
+
+    <div class="titulo">
+        <h1>Cargar ejemplar</h1>
+    </div>
+
+    <!-- ==================== -->
+    <!-- INFORMACIÓN EJEMPLAR -->
+    <!-- ==================== -->
+
+    <section class="card">
+
+        <h2>Información del ejemplar</h2>
+
+        <div class="form-grid">
+
+            <div class="campo">
+                <label for="procedencia">Procedencia</label>
+
+                <select id="procedencia">
+                    <option value="">Seleccionar procedencia</option>
+                    <option value="silvestre">Silvestre</option>
+                    <option value="cultivado">Cultivado</option>
+                    <option value="donacion">Donación</option>
+                </select>
+            </div>
+
+
+            <div class="campo campo-con-boton">
+
+                <label for="sitio">Sitio de recolección</label>
+
+                <div class="control-boton">
+
+                    <select id="sitio">
+                        <option value="">Seleccionar sitio</option>
+                        <option value="1">
+                            Predio CCT CONICET CENPAT
+                        </option>
+                        <option value="2">
+                            Sitio de recolección 2
+                        </option>
+                    </select>
+
+                    <button type="button" class="btn-secundario">
+                        + Nuevo sitio
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="campo campo-con-boton">
+
+                <label for="recolector">Recolectado por</label>
+
+                <div class="control-boton">
+
+                    <select id="recolector">
+                        <option value="">
+                            Seleccionar recolector
+                        </option>
+
+                        <option value="1">
+                            Daniel Udrizar Sauthier
+                        </option>
+
+                        <option value="2">
+                            Juan Pérez
+                        </option>
+                    </select>
+
+                    <button type="button" class="btn-secundario">
+                        + Nuevo
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="campo">
+
+                <label for="fecha-recoleccion">
+                    Fecha de recolección
+                </label>
+
+                <input
+                    type="date"
+                    id="fecha-recoleccion"
+                >
+
+            </div>
+
+        </div>
+
+
+        <div class="campo observaciones">
+
+            <label for="observaciones">
+                Observaciones
+            </label>
+
+            <textarea
+                id="observaciones"
+                rows="5"
+                placeholder="Ingrese observaciones sobre el ejemplar..."
+            ></textarea>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==================== -->
+    <!-- GERMOPLASMAS -->
+    <!-- ==================== -->
+
+    <section class="card">
+
+        <div class="seccion-titulo">
+
+            <h2>Germoplasmas</h2>
+
+            <button type="button" class="btn-nuevo">
+                + Nuevo germoplasma
+            </button>
+
+        </div>
+
+
+        <div class="eventos-header germoplasmas-header">
+
+            <span>Tipo de germoplasma</span>
+            <span></span>
+
+        </div>
+
+
+        <div class="eventos-container">
+
+            <div class="evento-card germoplasma-card">
+
+                <span class="evento-tipo">
+                    Planta
+                </span>
+
+                <button
+                    type="button"
+                    class="btn-detalle"
+                >
+                    Editar
+                </button>
+
+            </div>
+
+
+            <div class="evento-card germoplasma-card">
+
+                <span class="evento-tipo">
+                    Semillas
+                </span>
+
+                <button
+                    type="button"
+                    class="btn-detalle"
+                >
+                    Editar
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==================== -->
+    <!-- EVENTOS -->
+    <!-- ==================== -->
+
+    <section class="card">
+
+        <div class="seccion-titulo">
+
+            <h2>Eventos iniciales</h2>
+
+            <button type="button" class="btn-nuevo">
+                + Agregar evento
+            </button>
+
+        </div>
+
+
+        <!-- Encabezado de la lista -->
+
+        <div class="eventos-header">
+
+            <span>Evento</span>
+            <span>Fecha</span>
+            <span>Realizado por</span>
+            <span></span>
+
+        </div>
+
+
+        <!-- Eventos existentes -->
+
+        <div class="eventos-container">
+
+            <div class="evento-card">
+
+                <span class="evento-tipo">
+                    Ingreso
+                </span>
+
+                <span>
+                    21/05/2025
+                </span>
+
+                <span>
+                    Gustavo Pazos
+                </span>
+
+                <button
+                    type="button"
+                    class="btn-detalle"
+                >
+                    Editar
+                </button>
+
+            </div>
+
+
+            <div class="evento-card">
+
+                <span class="evento-tipo">
+                    Determinar taxón
+                </span>
+
+                <span>
+                    21/05/2025
+                </span>
+
+                <span>
+                    Daniel Udrizar
+                </span>
+
+                <button
+                    type="button"
+                    class="btn-detalle"
+                >
+                    Editar
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- ==================== -->
+        <!-- FORMULARIO EVENTO -->
+        <!-- ==================== -->
+
+        <div class="evento-form">
+
+            <h3>Nuevo evento</h3>
+
+
+            <div class="form-grid evento-grid">
+
+
+                <div class="campo">
+
+                    <label for="tipo-evento">
+                        Tipo de evento
+                    </label>
+
+                    <select id="tipo-evento">
+
+                        <option value="">
+                            Seleccionar evento
+                        </option>
+
+                        <option value="ingreso">
+                            Ingreso
+                        </option>
+
+                        <option value="determinar">
+                            Determinar taxón
+                        </option>
+
+                        <option value="redeterminar">
+                            Redeterminación taxonómica
+                        </option>
+
+                        <option value="transplante">
+                            Trasplante
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="campo">
+
+                    <label for="fecha-evento">
+                        Fecha
+                    </label>
+
+                    <input
+                        type="date"
+                        id="fecha-evento"
+                    >
+
+                </div>
+
+
+                <div class="campo">
+
+                    <label for="realizado-por">
+                        Realizado por
+                    </label>
+
+                    <select id="realizado-por">
+
+                        <option value="">
+                            Seleccionar persona
+                        </option>
+
+                        <option value="1">
+                            Gustavo Pazos
+                        </option>
+
+                        <option value="2">
+                            Daniel Udrizar Sauthier
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!-- Datos específicos del evento -->
+
+            <div class="evento-especifico">
+
+                <h4>
+                    Datos de determinación
+                </h4>
+
+
+                <div class="campo">
+
+                    <label for="taxon-nuevo">
+                        Taxón nuevo
+                    </label>
+
+                    <select id="taxon-nuevo">
+
+                        <option value="">
+                            Seleccionar taxón
+                        </option>
+
+                        <option value="1829">
+                            Atriplex lampa
+                        </option>
+
+                        <option value="1830">
+                            Prosopis flexuosa
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!-- Acciones del formulario -->
+
+            <div class="evento-form-acciones">
+
+                <button
+                    type="button"
+                    class="btn-cancelar"
+                >
+                    Cancelar
+                </button>
+
+                <button
+                    type="button"
+                    class="btn-nuevo"
+                >
+                    Agregar evento
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==================== -->
+    <!-- ACCIONES PRINCIPALES -->
+    <!-- ==================== -->
+
+    <div class="acciones">
+
+        <button
+            type="button"
+            class="btn-cancelar"
+        >
+            Cancelar
+        </button>
+
+        <button
+            type="button"
+            class="btn-nuevo"
+        >
+            Crear ejemplar
+        </button>
+
+    </div>
+
+</main>
+
+</body>
+</html>
