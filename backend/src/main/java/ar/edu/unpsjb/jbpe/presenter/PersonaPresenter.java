@@ -4,12 +4,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import ar.edu.unpsjb.jbpe.Response;
 import ar.edu.unpsjb.jbpe.business.service.PersonaService;
 import ar.edu.unpsjb.jbpe.model.dto.PersonaDTO;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("persona")
@@ -32,9 +34,9 @@ public class PersonaPresenter {
     }
 
     @PostMapping()
-    public ResponseEntity<Object> create(PersonaDTO aPersonaDTO) {
+    public ResponseEntity<Object> create(@Valid @RequestBody PersonaDTO aPersonaDTO) {
         if(aPersonaDTO.getId() != null) {
-            Response.error(aPersonaDTO, "una nueva persona no puede tener id");
+            return Response.error(aPersonaDTO, "una nueva persona no puede tener id");
         }
         return Response.ok(personaService.save(aPersonaDTO));
     }

@@ -3,8 +3,8 @@ package ar.edu.unpsjb.jbpe.presenter;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import ar.edu.unpsjb.jbpe.Response;
@@ -28,7 +28,7 @@ public class EventoPresenter {
     }
 
     @PostMapping()
-    public ResponseEntity<Object> create(@Valid @RequestParam EventoDTO aEventoDTO) {
+    public ResponseEntity<Object> create(@Valid @RequestBody EventoDTO aEventoDTO) {
         return Response.ok(eventoService.save(aEventoDTO));
     }
 
