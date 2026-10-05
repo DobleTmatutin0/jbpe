@@ -19,12 +19,18 @@ public interface EventoRepository extends JpaRepository<Evento, Integer> {
             ev.id,
             ev.tipoDeEvento,
             ev.fecha,
-            ev.realizadoPor,
+            new ar.edu.unpsjb.jbpe.model.dto.PersonaDTO(
+                p.id,
+                p.nombre,
+                p.apellido,
+                p.tipoDePersona
+            ),
             e.adquisicionId,
             ev.observaciones
         )
         FROM Evento AS ev
             LEFT JOIN ev.ejemplar AS e
+            LEFT JOIN ev.realizadoPor AS p
     """)
     List<EventoDTO> findAllDTO();
 

@@ -58,7 +58,12 @@ public interface EjemplarRepository extends JpaRepository<Ejemplar, Integer> {
                 )
             ),
             e.estadoActual,
-            e.recolectadoPor,
+            new ar.edu.unpsjb.jbpe.model.dto.PersonaDTO(
+                p.id,
+                p.nombre,
+                p.apellido,
+                p.tipoDePersona
+            ),
             e.fechaDeRecoleccion,
             new ar.edu.unpsjb.jbpe.model.dto.SitioDeRecoleccionDTO(
                 sdr.id,
@@ -71,6 +76,7 @@ public interface EjemplarRepository extends JpaRepository<Ejemplar, Integer> {
                 sdr.descripcion
             ),
             e.procedencia,
+            null,
             e.observaciones,
             new ar.edu.unpsjb.jbpe.model.dto.SectorDTO(
                 s.id,
@@ -86,6 +92,7 @@ public interface EjemplarRepository extends JpaRepository<Ejemplar, Integer> {
         )
         FROM Ejemplar AS e
             LEFT JOIN e.taxonActual AS ne
+            LEFT JOIN e.recolectadoPor AS p
             LEFT JOIN ne.detalleEspecie AS de
             LEFT JOIN de.genero AS g
             LEFT JOIN g.familia AS f
