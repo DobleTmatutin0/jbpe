@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import ar.edu.unpsjb.jbpe.Response;
 import ar.edu.unpsjb.jbpe.business.service.EjemplarService;
-import ar.edu.unpsjb.jbpe.model.dto.EjemplarDTO;
+import ar.edu.unpsjb.jbpe.model.dto.ejemplar.EjemplarCreateDTO;
 import jakarta.validation.Valid;
 
 @RestController
@@ -34,10 +34,7 @@ public class EjemplarPresenter {
     }
 
     @PostMapping()
-    public ResponseEntity<Object> create(@Valid @RequestBody EjemplarDTO anEjemplarDTO) {
-        if (anEjemplarDTO.getId() != null) {
-            return Response.error(anEjemplarDTO, "un nuevo ejemplar no puede tener id");
-        }
+    public ResponseEntity<Object> create(@Valid @RequestBody EjemplarCreateDTO anEjemplarDTO) {
         return Response.ok(ejemplarService.save(anEjemplarDTO));
     }
 }
