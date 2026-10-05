@@ -61,7 +61,7 @@ public  class EjemplarService {
 
             germoplasmaToSave.setEjemplar(savedEjemplar);
             germoplasmaToSave.setTipoDeGermoplasma(germoplasmaColectadoDTO.getTipoDeGermoplasma());
-            germoplasmaToSave.setCantidad(germoplasmaColectadoDTO.getCantidad());
+            // germoplasmaToSave.setCantidad(germoplasmaColectadoDTO.getCantidad());
 
             germoplasmaColectadoRepository.save(germoplasmaToSave);
         }
