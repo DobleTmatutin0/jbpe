@@ -9,9 +9,10 @@ import ar.edu.unpsjb.jbpe.business.repository.EjemplarRepository;
 import ar.edu.unpsjb.jbpe.business.repository.GermoplasmaColectadoRepository;
 import ar.edu.unpsjb.jbpe.business.repository.PersonaRepository;
 import ar.edu.unpsjb.jbpe.business.repository.SitioDeRecoleccionRepository;
-import ar.edu.unpsjb.jbpe.model.dto.EjemplarDTO;
-import ar.edu.unpsjb.jbpe.model.dto.EjemplarMinDTO;
 import ar.edu.unpsjb.jbpe.model.dto.GermoplasmaColectadoDTO;
+import ar.edu.unpsjb.jbpe.model.dto.ejemplar.EjemplarCreateDTO;
+import ar.edu.unpsjb.jbpe.model.dto.ejemplar.EjemplarDTO;
+import ar.edu.unpsjb.jbpe.model.dto.ejemplar.EjemplarMinDTO;
 import ar.edu.unpsjb.jbpe.model.entity.Ejemplar;
 import ar.edu.unpsjb.jbpe.model.entity.GermoplasmaColectado;
 
@@ -45,12 +46,12 @@ public  class EjemplarService {
     }
 
     @Transactional
-    public Ejemplar save(EjemplarDTO anEjemplarDTO) {
+    public Ejemplar save(EjemplarCreateDTO anEjemplarDTO) {
         Ejemplar ejemplarToSave = new Ejemplar();
 
-        ejemplarToSave.setRecolectadoPor(personaRepository.getReferenceById(anEjemplarDTO.getRecolectadoPor().getId()));
+        ejemplarToSave.setRecolectadoPor(personaRepository.getReferenceById(anEjemplarDTO.getRecolectadoPorId()));
         ejemplarToSave.setFechaDeRecoleccion(anEjemplarDTO.getFechaDeRecoleccion());
-        ejemplarToSave.setSitioDeRecoleccion(sitioDeRecoleccionRepository.getReferenceById(anEjemplarDTO.getSitioDeRecoleccion().getId()));
+        ejemplarToSave.setSitioDeRecoleccion(sitioDeRecoleccionRepository.getReferenceById(anEjemplarDTO.getSitioDeRecoleccionId()));
         ejemplarToSave.setProcedencia(anEjemplarDTO.getProcedencia());
         ejemplarToSave.setObservaciones(anEjemplarDTO.getObservaciones());
 
