@@ -1,6 +1,7 @@
 package ar.edu.unpsjb.jbpe.model.dto;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import ar.edu.unpsjb.jbpe.model.enumeration.EstadoEjemplar;
@@ -46,7 +47,7 @@ public class EjemplarDTO {
 
 	//@NotNull(message = "")
 	@Valid
-	private List<GermoplasmaColectadoDTO> germplasmasColectados;
+	private List<GermoplasmaColectadoDTO> germplasmasColectados = new ArrayList<>();
 
 	private String observaciones;
 
