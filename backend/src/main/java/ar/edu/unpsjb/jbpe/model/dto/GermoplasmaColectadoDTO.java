@@ -15,6 +15,6 @@ public class GermoplasmaColectadoDTO {
     @NotNull(message = "el tipo de germoplasma es obligatorio (not NULL)")
     private TipoDeGermoplasma tipoDeGermoplasma;
 
-    @NotNull(message = "la cantidad colectada es obligatoria (not NULL)")
-    private Integer cantidad;
+    // @NotNull(message = "la cantidad colectada es obligatoria (not NULL)")
+    // private Integer cantidad;
 }

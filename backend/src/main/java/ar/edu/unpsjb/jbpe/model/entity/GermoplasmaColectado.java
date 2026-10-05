@@ -40,7 +40,7 @@ public class GermoplasmaColectado {
     @JdbcTypeCode(SqlTypes.NAMED_ENUM)
     private TipoDeGermoplasma tipoDeGermoplasma;
 
-    @Column(nullable = false)
-    private Integer cantidad;
+    // @Column(nullable = false)
+    // private Integer cantidad;
 
 }
