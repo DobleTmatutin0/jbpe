@@ -7,8 +7,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import ar.edu.unpsjb.jbpe.model.dto.EjemplarDTO;
-import ar.edu.unpsjb.jbpe.model.dto.EjemplarMinDTO;
+import ar.edu.unpsjb.jbpe.model.dto.ejemplar.EjemplarDTO;
+import ar.edu.unpsjb.jbpe.model.dto.ejemplar.EjemplarMinDTO;
 import ar.edu.unpsjb.jbpe.model.entity.Ejemplar;
 
 @Repository
@@ -17,7 +17,7 @@ public interface EjemplarRepository extends JpaRepository<Ejemplar, Integer> {
     // Default JpaRepository methods
 
     @Query("""
-        SELECT new ar.edu.unpsjb.jbpe.model.dto.EjemplarMinDTO(
+        SELECT new ar.edu.unpsjb.jbpe.model.dto.ejemplar.EjemplarMinDTO(
             e.id,
             e.adquisicionId,
             new ar.edu.unpsjb.jbpe.model.dto.summary.NombreEspecieSummaryDTO(
@@ -32,10 +32,10 @@ public interface EjemplarRepository extends JpaRepository<Ejemplar, Integer> {
     List<EjemplarMinDTO> getAllDTO();
 
     @Query("""
-        SELECT new ar.edu.unpsjb.jbpe.model.dto.EjemplarDTO(
+        SELECT new ar.edu.unpsjb.jbpe.model.dto.ejemplar.EjemplarDTO(
             e.id,
             e.adquisicionId,
-            new ar.edu.unpsjb.jbpe.model.dto.NombreEspecieDTO(
+            new ar.edu.unpsjb.jbpe.model.dto.taxon.NombreEspecieDTO(
                 ne.id,
                 ne.nombre,
                 ne.linkFloraArg,
