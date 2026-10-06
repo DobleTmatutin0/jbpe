@@ -20,7 +20,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 
-public class EventoTransplante {
+public class EventoTrasplante {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
