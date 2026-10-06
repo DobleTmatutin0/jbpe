@@ -2,6 +2,7 @@ package ar.edu.unpsjb.jbpe.model.dto.evento;
 
 import java.time.LocalDate;
 
+import ar.edu.unpsjb.jbpe.model.dto.PersonaDTO;
 import ar.edu.unpsjb.jbpe.model.enumeration.TipoDeEvento;
 
 import jakarta.validation.Valid;
