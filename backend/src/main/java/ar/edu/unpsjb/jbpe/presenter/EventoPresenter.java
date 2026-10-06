@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import ar.edu.unpsjb.jbpe.Response;
 import ar.edu.unpsjb.jbpe.business.service.EventoService;
-import ar.edu.unpsjb.jbpe.model.dto.EventoDTO;
+import ar.edu.unpsjb.jbpe.model.dto.evento.EventoDTO;
 import jakarta.validation.Valid;
 
 @RestController
@@ -29,7 +29,7 @@ public class EventoPresenter {
 
     @PostMapping()
     public ResponseEntity<Object> create(@Valid @RequestBody EventoDTO aEventoDTO) {
-        return Response.ok(eventoService.save(aEventoDTO));
+        return Response.ok(eventoService.saveEventoBase(aEventoDTO));
     }
 
 }
