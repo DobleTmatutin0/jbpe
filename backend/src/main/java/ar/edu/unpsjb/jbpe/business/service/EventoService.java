@@ -71,32 +71,32 @@ public class EventoService {
     }
 
     @Transactional
-    public EventoIngreso saveEventoIngreso() {
+    public EventoIngreso saveEventoIngreso(EventoIngreso aEventoIngreso) {
 
-        return eventoIngresoRepository.save(entity);
+        return eventoIngresoRepository.save(aEventoIngreso);
     }
 
     @Transactional
-    public EventoDeterminarTaxon saveEventoDeterminarTaxon() {
+    public EventoDeterminarTaxon saveEventoDeterminarTaxon(EventoDeterminarTaxon aEventoDeterminarTaxon) {
 
-        return eventoDeterminarTaxonRepository.save();
+        return eventoDeterminarTaxonRepository.save(aEventoDeterminarTaxon);
     }
 
     @Transactional
-    public EventoTrasplante saveEventoTrasplante() {
+    public EventoTrasplante saveEventoTrasplante(EventoTrasplante aEventoTrasplante) {
 
-        return eventoTrasplanteRepository.save(entity);
+        return eventoTrasplanteRepository.save(aEventoTrasplante);
     }
 
     @Transactional
-    public EventoCheckeoAnual saveEventoCheckeoAnual() {
+    public EventoCheckeoAnual saveEventoCheckeoAnual(EventoCheckeoAnual aEventoCheckeoAnual) {
 
-        return eventoCheckeoAnualRepository.save(entity);
+        return eventoCheckeoAnualRepository.save(aEventoCheckeoAnual);
     }
 
     @Transactional
-    public EventoDesaccesion saveEventoDesaccesion() {
+    public EventoDesaccesion saveEventoDesaccesion(EventoDesaccesion aEventoDesaccesion) {
 
-        return eventoDesaccesionRepository.save(entity);
+        return eventoDesaccesionRepository.save(aEventoDesaccesion);
     }
 }
