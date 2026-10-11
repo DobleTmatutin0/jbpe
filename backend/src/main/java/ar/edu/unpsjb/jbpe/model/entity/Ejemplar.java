@@ -38,7 +38,7 @@ public class Ejemplar {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "adquisicion_id")
+    @Column(name = "adquisicion_id", insertable = false, updatable = false)
     private String adquisicionId;
 
     private LocalDateTime marcaTemporal;
