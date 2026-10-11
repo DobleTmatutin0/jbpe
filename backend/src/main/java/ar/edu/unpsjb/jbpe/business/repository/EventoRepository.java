@@ -15,7 +15,7 @@ public interface EventoRepository extends JpaRepository<Evento, Integer> {
     // Default JpaRepository methods
 
     @Query("""
-        SELECT new ar.edu.unpsjb.jbpe.model.dto.EventoDTO(
+        SELECT new ar.edu.unpsjb.jbpe.model.dto.evento.EventoDTO(
             ev.id,
             ev.tipoDeEvento,
             ev.fecha,
