@@ -57,14 +57,16 @@ public  class EjemplarService {
 
         Ejemplar savedEjemplar = ejemplarRepository.save(ejemplarToSave);
 
-        for (GermoplasmaColectadoDTO germoplasmaColectadoDTO : anEjemplarDTO.getGermplasmasColectados()) {
-            GermoplasmaColectado germoplasmaToSave = new GermoplasmaColectado();
+        if (anEjemplarDTO.getGermplasmasColectados() != null) {
+            for (GermoplasmaColectadoDTO germoplasmaColectadoDTO : anEjemplarDTO.getGermplasmasColectados()) {
+                GermoplasmaColectado germoplasmaToSave = new GermoplasmaColectado();
 
-            germoplasmaToSave.setEjemplar(savedEjemplar);
-            germoplasmaToSave.setTipoDeGermoplasma(germoplasmaColectadoDTO.getTipoDeGermoplasma());
-            // germoplasmaToSave.setCantidad(germoplasmaColectadoDTO.getCantidad());
+                germoplasmaToSave.setEjemplar(savedEjemplar);
+                germoplasmaToSave.setTipoDeGermoplasma(germoplasmaColectadoDTO.getTipoDeGermoplasma());
+                // germoplasmaToSave.setCantidad(germoplasmaColectadoDTO.getCantidad());
 
-            germoplasmaColectadoRepository.save(germoplasmaToSave);
+                germoplasmaColectadoRepository.save(germoplasmaToSave);
+            }
         }
 
         return savedEjemplar;

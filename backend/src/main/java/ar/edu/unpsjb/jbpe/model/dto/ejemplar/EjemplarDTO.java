@@ -51,8 +51,7 @@ public class EjemplarDTO {
 	private Procedencia procedencia;
 
 	//@NotNull(message = "")
-	@Valid
-	private List<GermoplasmaColectadoDTO> germplasmasColectados = new ArrayList<>();
+	private List<@Valid GermoplasmaColectadoDTO> germplasmasColectados = new ArrayList<>();
 
 	private String observaciones;
 
