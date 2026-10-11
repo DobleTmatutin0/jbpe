@@ -41,6 +41,7 @@ public class Ejemplar {
     @Column(name = "adquisicion_id", insertable = false, updatable = false)
     private String adquisicionId;
 
+    @Column(name = "marca_temporal", insertable = false, updatable = false)
     private LocalDateTime marcaTemporal;
 
     @ManyToOne
