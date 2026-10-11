@@ -46,7 +46,7 @@ public  class EjemplarService {
     }
 
     @Transactional
-    public Ejemplar save(EjemplarCreateDTO anEjemplarDTO) {
+    public Integer save(EjemplarCreateDTO anEjemplarDTO) {
         Ejemplar ejemplarToSave = new Ejemplar();
 
         ejemplarToSave.setRecolectadoPor(personaRepository.getReferenceById(anEjemplarDTO.getRecolectadoPorId()));
@@ -69,6 +69,6 @@ public  class EjemplarService {
             }
         }
 
-        return savedEjemplar;
+        return savedEjemplar.getId();
     }
 }
