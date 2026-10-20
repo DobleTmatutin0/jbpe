@@ -38,6 +38,6 @@ public class EventoTrasplante {
     private Persona trasplantadoPor;
 
     @Column(name = "como_fue_plantado_en_predio")
-    private String ComoFuePlantadoEnPredio;
+    private String comoFuePlantadoEnPredio;
 
 }
