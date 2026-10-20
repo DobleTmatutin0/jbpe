@@ -36,10 +36,10 @@ public class EventoCheckeoAnual {
     @JoinColumn(name = "event_id", nullable = false)
     private Evento evento;
 
-    @Column(name = "altura_cm")
+    @Column(name = "altura_cm", precision = 6, scale = 3)
     private BigDecimal alturaEnCm;
 
-    @Column(name = "diametro_cm")
+    @Column(name = "diametro_cm", precision = 6, scale = 3)
     private BigDecimal diametroEnCm;
 
     // enum
