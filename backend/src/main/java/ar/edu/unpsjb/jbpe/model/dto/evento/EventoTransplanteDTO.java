@@ -2,7 +2,6 @@ package ar.edu.unpsjb.jbpe.model.dto.evento;
 
 import ar.edu.unpsjb.jbpe.model.dto.PersonaDTO;
 import ar.edu.unpsjb.jbpe.model.entity.Evento;
-import ar.edu.unpsjb.jbpe.model.entity.Persona;
 import ar.edu.unpsjb.jbpe.model.entity.Sector;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
