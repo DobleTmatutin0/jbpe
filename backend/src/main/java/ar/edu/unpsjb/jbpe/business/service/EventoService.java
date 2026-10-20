@@ -13,7 +13,12 @@ import ar.edu.unpsjb.jbpe.business.repository.EventoIngresoRepository;
 import ar.edu.unpsjb.jbpe.business.repository.EventoRepository;
 import ar.edu.unpsjb.jbpe.business.repository.EventoTrasplanteRepository;
 import ar.edu.unpsjb.jbpe.business.repository.PersonaRepository;
+import ar.edu.unpsjb.jbpe.model.dto.evento.EventoCheckeoAnualDTO;
 import ar.edu.unpsjb.jbpe.model.dto.evento.EventoDTO;
+import ar.edu.unpsjb.jbpe.model.dto.evento.EventoDesaccesionDTO;
+import ar.edu.unpsjb.jbpe.model.dto.evento.EventoDeterminarTaxonDTO;
+import ar.edu.unpsjb.jbpe.model.dto.evento.EventoIngresoDTO;
+import ar.edu.unpsjb.jbpe.model.dto.evento.EventoTransplanteDTO;
 import ar.edu.unpsjb.jbpe.model.entity.Evento;
 import ar.edu.unpsjb.jbpe.model.entity.EventoCheckeoAnual;
 import ar.edu.unpsjb.jbpe.model.entity.EventoDesaccesion;
@@ -57,8 +62,7 @@ public class EventoService {
         return eventoRepository.findAllDTO();
     }
 
-    @Transactional
-    public Evento saveEventoBase(EventoDTO aEventoDTO) {
+    private Evento saveEventoBase(EventoDTO aEventoDTO) {
         Evento eventoToSave = new Evento();
 
         eventoToSave.setTipoDeEvento(aEventoDTO.getTipoDeEvento());
@@ -71,32 +75,62 @@ public class EventoService {
     }
 
     @Transactional
-    public EventoIngreso saveEventoIngreso(EventoIngreso aEventoIngreso) {
+    public EventoIngreso saveEventoIngreso(EventoIngresoDTO aEventoIngresoDTO) {
+        Evento eventoBase = this.saveEventoBase(aEventoIngresoDTO);
 
-        return eventoIngresoRepository.save(aEventoIngreso);
+        EventoIngreso newEventoIngreso = new EventoIngreso();
+
+        newEventoIngreso.setEvento(eventoBase);
+        newEventoIngreso.setFechaDeDonacion(aEventoIngresoDTO.getFechaDeDonacion());
+        newEventoIngreso.setDonadoPor(personaRepository.getReferenceById(aEventoIngresoDTO.getDonadoPor().getId()));
+
+        return eventoIngresoRepository.save(newEventoIngreso);
     }
 
     @Transactional
-    public EventoDeterminarTaxon saveEventoDeterminarTaxon(EventoDeterminarTaxon aEventoDeterminarTaxon) {
+    public EventoDeterminarTaxon saveEventoDeterminarTaxon(EventoDeterminarTaxonDTO aEventoDeterminarTaxonDTO) {
+        EventoDeterminarTaxon eventoDeterminarTaxonToSave = new EventoDeterminarTaxon();
 
-        return eventoDeterminarTaxonRepository.save(aEventoDeterminarTaxon);
+        eventoDeterminarTaxonToSave.setEvento(aEventoDeterminarTaxonDTO.getEvento());
+        eventoDeterminarTaxonToSave.setTaxonViejo(aEventoDeterminarTaxonDTO.getTaxonViejo());
+        eventoDeterminarTaxonToSave.setTaxonNuevo(aEventoDeterminarTaxonDTO.getTaxonNuevo());
+
+        return eventoDeterminarTaxonRepository.save(eventoDeterminarTaxonToSave);
     }
 
     @Transactional
-    public EventoTrasplante saveEventoTrasplante(EventoTrasplante aEventoTrasplante) {
+    public EventoTrasplante saveEventoTrasplante(EventoTransplanteDTO aEventoTrasplanteDTO) {
+        EventoTrasplante eventoTrasplanteToSave = new EventoTrasplante();
 
-        return eventoTrasplanteRepository.save(aEventoTrasplante);
+        eventoTrasplanteToSave.setEvento(aEventoTrasplanteDTO.getEvento());
+        eventoTrasplanteToSave.setSectorInicial(aEventoTrasplanteDTO.getSectorInicial());
+        eventoTrasplanteToSave.setTrasplantadoPor(personaRepository.getReferenceById(aEventoTrasplanteDTO.getTrasplantadoPor().getId()));
+        eventoTrasplanteToSave.setComoFuePlantadoEnPredio(aEventoTrasplanteDTO.getComoFuePlantadoEnPredio());
+
+        return eventoTrasplanteRepository.save(eventoTrasplanteToSave);
     }
 
     @Transactional
-    public EventoCheckeoAnual saveEventoCheckeoAnual(EventoCheckeoAnual aEventoCheckeoAnual) {
+    public EventoCheckeoAnual saveEventoCheckeoAnual(EventoCheckeoAnualDTO aEventoCheckeoAnualDTO) {
+        EventoCheckeoAnual eventoCheckeoAnualToSave = new EventoCheckeoAnual();
 
-        return eventoCheckeoAnualRepository.save(aEventoCheckeoAnual);
+        eventoCheckeoAnualToSave.setEvento(aEventoCheckeoAnualDTO.getEvento());
+        eventoCheckeoAnualToSave.setAlturaEnCm(aEventoCheckeoAnualDTO.getAlturaEnCm());
+        eventoCheckeoAnualToSave.setDiametroEnCm(aEventoCheckeoAnualDTO.getDiametroEnCm());
+        eventoCheckeoAnualToSave.setEstadoDeSalud(aEventoCheckeoAnualDTO.getEstadoDeSalud());
+        eventoCheckeoAnualToSave.setFlorecio(aEventoCheckeoAnualDTO.isFlorecio());
+        eventoCheckeoAnualToSave.setFructifico(aEventoCheckeoAnualDTO.isFlorecio());
+
+        return eventoCheckeoAnualRepository.save(eventoCheckeoAnualToSave);
     }
 
     @Transactional
-    public EventoDesaccesion saveEventoDesaccesion(EventoDesaccesion aEventoDesaccesion) {
+    public EventoDesaccesion saveEventoDesaccesion(EventoDesaccesionDTO aEventoDesaccesionDTO) {
+        EventoDesaccesion eventoDesaccesionToSave = new EventoDesaccesion();
 
-        return eventoDesaccesionRepository.save(aEventoDesaccesion);
+        eventoDesaccesionToSave.setEvento(aEventoDesaccesionDTO.getEvento());
+        eventoDesaccesionToSave.setMotivo(aEventoDesaccesionDTO.getMotivo());
+
+        return eventoDesaccesionRepository.save(eventoDesaccesionToSave);
     }
 }
