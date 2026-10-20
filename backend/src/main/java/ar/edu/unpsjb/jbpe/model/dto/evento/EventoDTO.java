@@ -10,14 +10,16 @@ import jakarta.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@NoArgsConstructor
 @AllArgsConstructor
 
 public class EventoDTO {
-    private Long id;
+    private Long idBase;
 
     @NotNull(message = "El tipo de evento es obligatorio (not NULL)")
     private TipoDeEvento tipoDeEvento;
