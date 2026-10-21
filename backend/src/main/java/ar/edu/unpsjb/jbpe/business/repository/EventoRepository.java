@@ -25,7 +25,6 @@ public interface EventoRepository extends JpaRepository<Evento, Integer> {
                 p.apellido,
                 p.tipoDePersona
             ),
-            e.adquisicionId,
             ev.observaciones
         )
         FROM Evento AS ev
