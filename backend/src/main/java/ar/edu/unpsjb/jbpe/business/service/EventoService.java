@@ -17,7 +17,6 @@ import ar.edu.unpsjb.jbpe.business.repository.PersonaRepository;
 import ar.edu.unpsjb.jbpe.model.dto.evento.EventoCheckeoAnualDTO;
 import ar.edu.unpsjb.jbpe.model.dto.evento.EventoDTO;
 import ar.edu.unpsjb.jbpe.model.dto.evento.EventoDesaccesionDTO;
-import ar.edu.unpsjb.jbpe.model.dto.evento.EventoDeterminarTaxonDTO;
 import ar.edu.unpsjb.jbpe.model.dto.evento.EventoTransplanteDTO;
 import ar.edu.unpsjb.jbpe.model.dto.evento.create.EventoCreateDTO;
 import ar.edu.unpsjb.jbpe.model.dto.evento.create.EventoDeterminarTaxonCreateDTO;
