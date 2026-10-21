@@ -12,13 +12,16 @@ import ar.edu.unpsjb.jbpe.business.repository.EventoDeterminarTaxonRepository;
 import ar.edu.unpsjb.jbpe.business.repository.EventoIngresoRepository;
 import ar.edu.unpsjb.jbpe.business.repository.EventoRepository;
 import ar.edu.unpsjb.jbpe.business.repository.EventoTrasplanteRepository;
+import ar.edu.unpsjb.jbpe.business.repository.NombreEspecieRepository;
 import ar.edu.unpsjb.jbpe.business.repository.PersonaRepository;
 import ar.edu.unpsjb.jbpe.model.dto.evento.EventoCheckeoAnualDTO;
 import ar.edu.unpsjb.jbpe.model.dto.evento.EventoDTO;
 import ar.edu.unpsjb.jbpe.model.dto.evento.EventoDesaccesionDTO;
 import ar.edu.unpsjb.jbpe.model.dto.evento.EventoDeterminarTaxonDTO;
-import ar.edu.unpsjb.jbpe.model.dto.evento.EventoIngresoDTO;
 import ar.edu.unpsjb.jbpe.model.dto.evento.EventoTransplanteDTO;
+import ar.edu.unpsjb.jbpe.model.dto.evento.create.EventoCreateDTO;
+import ar.edu.unpsjb.jbpe.model.dto.evento.create.EventoDeterminarTaxonCreateDTO;
+import ar.edu.unpsjb.jbpe.model.dto.evento.create.EventoIngresoCreateDTO;
 import ar.edu.unpsjb.jbpe.model.entity.Evento;
 import ar.edu.unpsjb.jbpe.model.entity.EventoCheckeoAnual;
 import ar.edu.unpsjb.jbpe.model.entity.EventoDesaccesion;
@@ -37,6 +40,7 @@ public class EventoService {
     private final EventoDesaccesionRepository eventoDesaccesionRepository;
     private final PersonaRepository personaRepository;
     private final EjemplarRepository ejemplarRepository;
+    private final NombreEspecieRepository nombreEspecieRepository;
 
     public EventoService(
         EventoRepository eventoRepository,
@@ -46,7 +50,8 @@ public class EventoService {
         EventoCheckeoAnualRepository eventoCheckeoAnualRepository,
         EventoDesaccesionRepository eventoDesaccesionRepository,
         PersonaRepository personaRepository,
-        EjemplarRepository ejemplarRepository
+        EjemplarRepository ejemplarRepository,
+        NombreEspecieRepository nombreEspecieRepository
     ) {
         this.eventoRepository = eventoRepository;
         this.eventoIngresoRepository = eventoIngresoRepository;
@@ -56,46 +61,60 @@ public class EventoService {
         this.eventoDesaccesionRepository = eventoDesaccesionRepository;
         this.personaRepository = personaRepository;
         this.ejemplarRepository = ejemplarRepository;
+        this.nombreEspecieRepository = nombreEspecieRepository;
     }
 
     public List<EventoDTO> findAll() {
         return eventoRepository.findAllDTO();
     }
 
-    private Evento saveEventoBase(EventoDTO aEventoDTO) {
+    private Evento saveEventoBase(EventoCreateDTO aEventoCreateDTO) {
         Evento eventoToSave = new Evento();
 
-        eventoToSave.setTipoDeEvento(aEventoDTO.getTipoDeEvento());
-        eventoToSave.setFecha(aEventoDTO.getFecha());
-        eventoToSave.setRealizadoPor(personaRepository.getReferenceById(aEventoDTO.getRealizadoPor().getId()));
-        eventoToSave.setEjemplar(ejemplarRepository.getReferenceById(ejemplarRepository.findDTOById(aEventoDTO.getAdquisicionId()).getId()));
-        eventoToSave.setObservaciones(aEventoDTO.getObservaciones());
+        eventoToSave.setTipoDeEvento(aEventoCreateDTO.getTipoDeEvento());
+        eventoToSave.setFecha(aEventoCreateDTO.getFecha());
+        eventoToSave.setRealizadoPor(personaRepository.getReferenceById(aEventoCreateDTO.getRealizadoPorId()));
+        eventoToSave.setEjemplar(ejemplarRepository.getReferenceById(aEventoCreateDTO.getEjemplarId()));
+        eventoToSave.setObservaciones(aEventoCreateDTO.getObservaciones());
 
         return eventoRepository.save(eventoToSave);
     }
 
     @Transactional
-    public EventoIngreso saveEventoIngreso(EventoIngresoDTO aEventoIngresoDTO) {
-        Evento eventoBase = this.saveEventoBase(aEventoIngresoDTO);
+    public Integer saveEventoIngreso(EventoIngresoCreateDTO aEventoIngresoCreateDTO) {
+        Evento eventoBase = this.saveEventoBase(aEventoIngresoCreateDTO);
 
         EventoIngreso newEventoIngreso = new EventoIngreso();
 
         newEventoIngreso.setEvento(eventoBase);
-        newEventoIngreso.setFechaDeDonacion(aEventoIngresoDTO.getFechaDeDonacion());
-        newEventoIngreso.setDonadoPor(personaRepository.getReferenceById(aEventoIngresoDTO.getDonadoPor().getId()));
+        if (aEventoIngresoCreateDTO.getDonadoPorId() != null) {
+            newEventoIngreso.setDonadoPor(
+                personaRepository.getReferenceById(aEventoIngresoCreateDTO.getDonadoPorId()));
+        }
+        newEventoIngreso.setFechaDeDonacion(aEventoIngresoCreateDTO.getFechaDeDonacion());
 
-        return eventoIngresoRepository.save(newEventoIngreso);
+        EventoIngreso savedEventoIngreso = eventoIngresoRepository.save(newEventoIngreso);
+        return savedEventoIngreso.getId();
     }
 
     @Transactional
-    public EventoDeterminarTaxon saveEventoDeterminarTaxon(EventoDeterminarTaxonDTO aEventoDeterminarTaxonDTO) {
+    public Integer saveEventoDeterminarTaxon(EventoDeterminarTaxonCreateDTO aEventoDeterminarTaxonCreateDTO) {
+        Evento eventoBase = this.saveEventoBase(aEventoDeterminarTaxonCreateDTO);
+
         EventoDeterminarTaxon eventoDeterminarTaxonToSave = new EventoDeterminarTaxon();
 
-        eventoDeterminarTaxonToSave.setEvento(aEventoDeterminarTaxonDTO.getEvento());
-        eventoDeterminarTaxonToSave.setTaxonViejo(aEventoDeterminarTaxonDTO.getTaxonViejo());
-        eventoDeterminarTaxonToSave.setTaxonNuevo(aEventoDeterminarTaxonDTO.getTaxonNuevo());
+        eventoDeterminarTaxonToSave.setEvento(eventoBase);
+        if (aEventoDeterminarTaxonCreateDTO.getTaxonViejo() != null) {
+            eventoDeterminarTaxonToSave.setTaxonViejo(
+                nombreEspecieRepository.getReferenceById(aEventoDeterminarTaxonCreateDTO.getTaxonViejo())
+            );
+        }
+        eventoDeterminarTaxonToSave.setTaxonNuevo(
+            nombreEspecieRepository.getReferenceById(aEventoDeterminarTaxonCreateDTO.getTaxonNuevo())
+        );
 
-        return eventoDeterminarTaxonRepository.save(eventoDeterminarTaxonToSave);
+        EventoDeterminarTaxon savedEventoDeterminarTaxon = eventoDeterminarTaxonRepository.save(eventoDeterminarTaxonToSave);
+        return savedEventoDeterminarTaxon.getId();
     }
 
     @Transactional
