@@ -28,12 +28,12 @@ public class EventoPresenter {
         return Response.ok(eventoService.findAll());
     }
 
-    @PostMapping("/evento-ingreso")
+    @PostMapping("/ingreso")
     public ResponseEntity<Object> createEventoIngreso(@Valid @RequestBody EventoIngresoCreateDTO aEventoIngresoCreateDTO) {
         return Response.ok(eventoService.saveEventoIngreso(aEventoIngresoCreateDTO));
     }
 
-    @PostMapping("/evento-determinar-taxon")
+    @PostMapping("/determinar-taxon")
     public ResponseEntity<Object> createEventoDeterminarTaxon(@Valid @RequestBody EventoDeterminarTaxonCreateDTO aEventoDeterminarTaxonCreateDTO) {
         return Response.ok(eventoService.saveEventoDeterminarTaxon(aEventoDeterminarTaxonCreateDTO));
     }
