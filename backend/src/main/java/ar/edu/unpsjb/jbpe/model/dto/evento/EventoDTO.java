@@ -31,8 +31,6 @@ public class EventoDTO {
     @NotNull(message = "El realizador de evento es obligatorio (not NULL)")
     private PersonaDTO realizadoPor;
 
-    @NotNull(message = "La adquisicion sobre la cual se efectua el evento es obligatoria (not NULL)")
-    private String adquisicionId;
-
+    // se borro el adquisicion id porq no aporta nada en el get
     private String observaciones;
 }
