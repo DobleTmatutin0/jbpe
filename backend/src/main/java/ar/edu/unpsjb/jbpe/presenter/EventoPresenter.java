@@ -9,9 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import ar.edu.unpsjb.jbpe.Response;
 import ar.edu.unpsjb.jbpe.business.service.EventoService;
-import ar.edu.unpsjb.jbpe.model.dto.evento.EventoDTO;
-import ar.edu.unpsjb.jbpe.model.dto.evento.EventoIngresoDTO;
-import ar.edu.unpsjb.jbpe.model.entity.EventoIngreso;
+import ar.edu.unpsjb.jbpe.model.dto.evento.create.EventoDeterminarTaxonCreateDTO;
+import ar.edu.unpsjb.jbpe.model.dto.evento.create.EventoIngresoCreateDTO;
 import jakarta.validation.Valid;
 
 @RestController
@@ -30,8 +29,13 @@ public class EventoPresenter {
     }
 
     @PostMapping("/evento-ingreso")
-    public ResponseEntity<Object> create(@Valid @RequestBody EventoIngresoDTO aEventoIngresoDTO) {
-        return Response.ok(eventoService.saveEventoIngreso(aEventoIngresoDTO));
+    public ResponseEntity<Object> createEventoIngreso(@Valid @RequestBody EventoIngresoCreateDTO aEventoIngresoCreateDTO) {
+        return Response.ok(eventoService.saveEventoIngreso(aEventoIngresoCreateDTO));
+    }
+
+    @PostMapping("/evento-determinar-taxon")
+    public ResponseEntity<Object> createEventoDeterminarTaxon(@Valid @RequestBody EventoDeterminarTaxonCreateDTO aEventoDeterminarTaxonCreateDTO) {
+        return Response.ok(eventoService.saveEventoDeterminarTaxon(aEventoDeterminarTaxonCreateDTO));
     }
 
 }
