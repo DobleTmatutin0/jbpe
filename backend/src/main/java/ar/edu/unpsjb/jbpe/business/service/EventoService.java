@@ -14,13 +14,14 @@ import ar.edu.unpsjb.jbpe.business.repository.EventoRepository;
 import ar.edu.unpsjb.jbpe.business.repository.EventoTrasplanteRepository;
 import ar.edu.unpsjb.jbpe.business.repository.NombreEspecieRepository;
 import ar.edu.unpsjb.jbpe.business.repository.PersonaRepository;
-import ar.edu.unpsjb.jbpe.model.dto.evento.EventoCheckeoAnualDTO;
+import ar.edu.unpsjb.jbpe.business.repository.SectorRepository;
 import ar.edu.unpsjb.jbpe.model.dto.evento.EventoDTO;
-import ar.edu.unpsjb.jbpe.model.dto.evento.EventoDesaccesionDTO;
-import ar.edu.unpsjb.jbpe.model.dto.evento.EventoTransplanteDTO;
+import ar.edu.unpsjb.jbpe.model.dto.evento.create.EventoCheckeoAnualCreateDTO;
 import ar.edu.unpsjb.jbpe.model.dto.evento.create.EventoCreateDTO;
+import ar.edu.unpsjb.jbpe.model.dto.evento.create.EventoDesaccesionCreateDTO;
 import ar.edu.unpsjb.jbpe.model.dto.evento.create.EventoDeterminarTaxonCreateDTO;
 import ar.edu.unpsjb.jbpe.model.dto.evento.create.EventoIngresoCreateDTO;
+import ar.edu.unpsjb.jbpe.model.dto.evento.create.EventoTrasplanteCreateDTO;
 import ar.edu.unpsjb.jbpe.model.entity.Evento;
 import ar.edu.unpsjb.jbpe.model.entity.EventoCheckeoAnual;
 import ar.edu.unpsjb.jbpe.model.entity.EventoDesaccesion;
@@ -40,6 +41,7 @@ public class EventoService {
     private final PersonaRepository personaRepository;
     private final EjemplarRepository ejemplarRepository;
     private final NombreEspecieRepository nombreEspecieRepository;
+    private final SectorRepository sectorRepository;
 
     public EventoService(
         EventoRepository eventoRepository,
@@ -50,7 +52,8 @@ public class EventoService {
         EventoDesaccesionRepository eventoDesaccesionRepository,
         PersonaRepository personaRepository,
         EjemplarRepository ejemplarRepository,
-        NombreEspecieRepository nombreEspecieRepository
+        NombreEspecieRepository nombreEspecieRepository,
+        SectorRepository sectorRepository
     ) {
         this.eventoRepository = eventoRepository;
         this.eventoIngresoRepository = eventoIngresoRepository;
@@ -61,6 +64,7 @@ public class EventoService {
         this.personaRepository = personaRepository;
         this.ejemplarRepository = ejemplarRepository;
         this.nombreEspecieRepository = nombreEspecieRepository;
+        this.sectorRepository = sectorRepository;
     }
 
     public List<EventoDTO> findAll() {
@@ -97,6 +101,13 @@ public class EventoService {
     }
 
     @Transactional
+    public Long saveEventoAccecion(EventoCreateDTO aEventoAccecionCreateDTO) {
+        Evento eventoBase = this.saveEventoBase(aEventoAccecionCreateDTO);
+
+        return eventoBase.getId();
+    }
+
+    @Transactional
     public Integer saveEventoDeterminarTaxon(EventoDeterminarTaxonCreateDTO aEventoDeterminarTaxonCreateDTO) {
         Evento eventoBase = this.saveEventoBase(aEventoDeterminarTaxonCreateDTO);
 
@@ -117,38 +128,54 @@ public class EventoService {
     }
 
     @Transactional
-    public EventoTrasplante saveEventoTrasplante(EventoTransplanteDTO aEventoTrasplanteDTO) {
+    public Integer saveEventoTrasplante(EventoTrasplanteCreateDTO aEventoTrasplanteCreateDTO) {
+        Evento eventoBase = this.saveEventoBase(aEventoTrasplanteCreateDTO);
+
         EventoTrasplante eventoTrasplanteToSave = new EventoTrasplante();
 
-        eventoTrasplanteToSave.setEvento(aEventoTrasplanteDTO.getEvento());
-        eventoTrasplanteToSave.setSectorInicial(aEventoTrasplanteDTO.getSectorInicial());
-        eventoTrasplanteToSave.setTrasplantadoPor(personaRepository.getReferenceById(aEventoTrasplanteDTO.getTrasplantadoPor().getId()));
-        eventoTrasplanteToSave.setComoFuePlantadoEnPredio(aEventoTrasplanteDTO.getComoFuePlantadoEnPredio());
+        eventoTrasplanteToSave.setEvento(eventoBase);
 
-        return eventoTrasplanteRepository.save(eventoTrasplanteToSave);
+        eventoTrasplanteToSave.setSectorInicial(sectorRepository.getReferenceById(aEventoTrasplanteCreateDTO.getSectorInicialId()));
+        eventoTrasplanteToSave.setTrasplantadoPor(personaRepository.getReferenceById(aEventoTrasplanteCreateDTO.getRealizadoPorId()));
+        if (aEventoTrasplanteCreateDTO.getComoFuePlantadoEnPredio() != null) {
+            eventoTrasplanteToSave.setComoFuePlantadoEnPredio(aEventoTrasplanteCreateDTO.getComoFuePlantadoEnPredio());
+        }
+
+        EventoTrasplante savedEventoTrasplante = eventoTrasplanteRepository.save(eventoTrasplanteToSave);
+        return savedEventoTrasplante.getId();
     }
 
     @Transactional
-    public EventoCheckeoAnual saveEventoCheckeoAnual(EventoCheckeoAnualDTO aEventoCheckeoAnualDTO) {
+    public Integer saveEventoCheckeoAnual(EventoCheckeoAnualCreateDTO aEventoCheckeoAnualCreateDTO) {
+        Evento eventoBase = this.saveEventoBase(aEventoCheckeoAnualCreateDTO);
+
         EventoCheckeoAnual eventoCheckeoAnualToSave = new EventoCheckeoAnual();
 
-        eventoCheckeoAnualToSave.setEvento(aEventoCheckeoAnualDTO.getEvento());
-        eventoCheckeoAnualToSave.setAlturaEnCm(aEventoCheckeoAnualDTO.getAlturaEnCm());
-        eventoCheckeoAnualToSave.setDiametroEnCm(aEventoCheckeoAnualDTO.getDiametroEnCm());
-        eventoCheckeoAnualToSave.setEstadoDeSalud(aEventoCheckeoAnualDTO.getEstadoDeSalud());
-        eventoCheckeoAnualToSave.setFlorecio(aEventoCheckeoAnualDTO.isFlorecio());
-        eventoCheckeoAnualToSave.setFructifico(aEventoCheckeoAnualDTO.isFlorecio());
+        eventoCheckeoAnualToSave.setEvento(eventoBase);
+        if (aEventoCheckeoAnualCreateDTO.getAlturaEnCm() != null) {
+            eventoCheckeoAnualToSave.setAlturaEnCm(aEventoCheckeoAnualCreateDTO.getAlturaEnCm());
+        }
+        if (aEventoCheckeoAnualCreateDTO.getDiametroEnCm() != null) {
+            eventoCheckeoAnualToSave.setDiametroEnCm(aEventoCheckeoAnualCreateDTO.getDiametroEnCm());
+        }
+        eventoCheckeoAnualToSave.setEstadoDeSalud(aEventoCheckeoAnualCreateDTO.getEstadoDeSalud());
+        eventoCheckeoAnualToSave.setFlorecio(aEventoCheckeoAnualCreateDTO.isFlorecio());
+        eventoCheckeoAnualToSave.setFructifico(aEventoCheckeoAnualCreateDTO.isFructifico());
 
-        return eventoCheckeoAnualRepository.save(eventoCheckeoAnualToSave);
+        EventoCheckeoAnual savedEventoCheckeoAnual = eventoCheckeoAnualRepository.save(eventoCheckeoAnualToSave);
+        return savedEventoCheckeoAnual.getId();
     }
 
     @Transactional
-    public EventoDesaccesion saveEventoDesaccesion(EventoDesaccesionDTO aEventoDesaccesionDTO) {
+    public Integer saveEventoDesaccesion(EventoDesaccesionCreateDTO aEventoDesaccesionCreateDTO) {
+        Evento eventoBase = this.saveEventoBase(aEventoDesaccesionCreateDTO);
+
         EventoDesaccesion eventoDesaccesionToSave = new EventoDesaccesion();
 
-        eventoDesaccesionToSave.setEvento(aEventoDesaccesionDTO.getEvento());
-        eventoDesaccesionToSave.setMotivo(aEventoDesaccesionDTO.getMotivo());
+        eventoDesaccesionToSave.setEvento(eventoBase);
+        eventoDesaccesionToSave.setMotivo(aEventoDesaccesionCreateDTO.getMotivo());
 
-        return eventoDesaccesionRepository.save(eventoDesaccesionToSave);
+        EventoDesaccesion savedEventoDesaccesion = eventoDesaccesionRepository.save(eventoDesaccesionToSave);
+        return savedEventoDesaccesion.getId();
     }
 }
