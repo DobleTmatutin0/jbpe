@@ -13,7 +13,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 
-public class EventoTransplanteDTO extends EventoDTO {
+public class EventoTrasplanteDTO extends EventoDTO {
     private Integer id;
 
     @NotNull(message = "El evento base no puede ser null (NOT NULL)")
